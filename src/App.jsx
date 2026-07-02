@@ -49,6 +49,18 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
 
+  // Body scroll lock when mobile navigation is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   // Refs for spotlight mask effect
   const canvasRef = useRef(null);
   const revealImgRef = useRef(null);
@@ -243,7 +255,7 @@ export default function App() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/30 backdrop-blur-[8px]"
+              className="fixed inset-0 bg-black/45 backdrop-blur-[12px]"
               style={{ zIndex: 9998 }}
             />
 
@@ -253,11 +265,11 @@ export default function App() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: '100%', opacity: 0 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-5 right-5 w-[85vw] sm:w-[320px] max-h-[82vh] rounded-[28px] shadow-[-20px_0_60px_rgba(0,0,0,0.25)] backdrop-blur-[30px] p-7 flex flex-col justify-between overflow-y-auto no-scrollbar"
+              className="fixed top-0 right-0 h-full w-[300px] max-w-[85vw] rounded-l-[32px] rounded-r-none shadow-[-20px_0_60px_rgba(0,0,0,0.25)] backdrop-blur-[30px] p-7 flex flex-col justify-between overflow-y-auto no-scrollbar"
               style={{
                 zIndex: 9999,
                 background: 'rgba(24, 24, 24, 0.78)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
                 boxSizing: 'border-box'
               }}
             >
@@ -268,14 +280,14 @@ export default function App() {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
                 className="absolute flex items-center justify-center rounded-full text-white cursor-pointer"
                 style={{
-                  top: '20px',
-                  right: '20px',
+                  top: '24px',
+                  right: '24px',
                   width: '48px',
                   height: '48px',
                   backgroundColor: 'rgba(255,255,255,0.08)',
                   backdropFilter: 'blur(20px)',
                   WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255,255,255,0.10)',
+                  border: '1px solid rgba(255, 255, 255, 0.10)',
                   zIndex: 10000
                 }}
                 aria-label="Close menu"
@@ -288,24 +300,24 @@ export default function App() {
 
               <div className="flex flex-col flex-1 justify-between h-full">
                 {/* Navigation Links */}
-                <nav className="flex flex-col gap-[24px] mt-16">
+                <nav className="flex flex-col gap-[24px] mt-24">
                   {[
                     { name: "About Me", id: "about" },
                     { name: "Experience", id: "experience" },
                     { name: "Projects", id: "projects" },
                     { name: "Skills", id: "skills" },
                     { name: "Contact", id: "contact" }
-                  ].map((item, i) => (
-                    <div key={item.id} className="overflow-hidden">
+                  ].map((item, idx) => (
+                    <div key={item.id} className="w-full flex items-center justify-start h-[56px] px-4">
                       <motion.button
-                        custom={i}
+                        custom={idx}
                         variants={{
                           hidden: { opacity: 0, x: 30 },
-                          visible: (idx) => ({
+                          visible: (i) => ({
                             opacity: 1,
                             x: 0,
                             transition: {
-                              delay: 0.15 + idx * 0.06,
+                              delay: 0.15 + i * 0.06,
                               duration: 0.6,
                               ease: [0.16, 1, 0.3, 1]
                             }
@@ -313,10 +325,13 @@ export default function App() {
                         }}
                         initial="hidden"
                         animate="visible"
-                        onClick={() => scrollToSection(item.id)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          scrollToSection(item.id);
+                        }}
                         whileHover={{ x: 8, color: '#57B9FF' }}
-                        className="text-left font-sans font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-fit block"
-                        style={{ fontSize: '18px', background: 'none', border: 'none' }}
+                        className="text-left font-sans font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-full block text-[22px] leading-[1.4]"
+                        style={{ background: 'none', border: 'none' }}
                       >
                         {item.name}
                       </motion.button>
@@ -617,26 +632,26 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative max-w-[1600px] mx-auto w-full px-6 sm:px-10 lg:px-16 pt-24 sm:pt-32 pb-[120px] flex flex-col z-30 border-t border-neutral-200/50"
+        className="relative w-full main-container z-30 border-t border-neutral-200/50"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 lg:gap-24 items-start">
           {/* Left Column (40% width on desktop) */}
-          <div className="lg:col-span-5 flex flex-col items-start pt-1">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#66C7F4] mb-4 block font-sans">ABOUT ME</span>
-            <h2 className="text-5xl lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px]">
+          <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
+            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">ABOUT ME</span>
+            <h2 className="text-[42px] md:text-[56px] lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-4 mb-6">
               Designing Brands<br/>That People<br/>Remember.
             </h2>
           </div>
 
           {/* Right Column (60% width on desktop) */}
-          <div className="lg:col-span-7 flex flex-col pt-0 lg:pt-[32px] text-neutral-600 font-normal">
-            <p className="max-w-[650px] text-[22px] leading-[1.7] text-neutral-900/72 font-sans font-normal">
+          <div className="col-span-1 md:col-span-7 flex flex-col pt-0 md:pt-[32px] text-neutral-600 font-normal">
+            <p className="max-w-[650px] text-[16px] md:text-[18px] lg:text-[22px] leading-[1.75] text-neutral-900/72 font-sans font-normal mb-5">
               I'm Santhoshkumar Kanagaraj, a Graphic Designer and UX/UI Designer dedicated to creating memorable brand identities, modern websites, and impactful digital experiences. By combining strategic thinking, creativity, and AI-powered workflows, I help businesses build stronger brands, connect with their audience, and stand out in competitive markets.
             </p>
             
             {/* Core Services Section (28px spacing from paragraph) */}
             <div className="flex flex-col gap-3 mt-7">
-              <span className="text-xs uppercase font-bold tracking-widest text-[#66C7F4] font-sans">WHAT I SPECIALIZE IN</span>
+              <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] font-sans">WHAT I SPECIALIZE IN</span>
               <div 
                 className="flex flex-wrap items-center font-sans select-none mt-1"
                 style={{ gap: '18px', fontSize: '15px', fontWeight: 600, letterSpacing: '0.05em', color: 'rgba(17, 17, 17, 0.75)' }}
@@ -680,21 +695,21 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative max-w-[1600px] mx-auto w-full px-6 sm:px-10 lg:px-16 pt-[100px] pb-24 sm:pb-32 flex flex-col gap-16 z-30 border-t border-[#EAEAEA]"
+        className="relative w-full main-container flex flex-col gap-16 z-30 border-t border-[#EAEAEA]"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column */}
-          <div className="lg:col-span-5 flex flex-col items-start pt-1">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#66C7F4] mb-3 block font-sans">EXPERIENCE</span>
-            <h2 className="text-5xl lg:text-[80px] font-bold tracking-tight text-neutral-900 leading-[1.0] font-serif mb-6">
+          <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
+            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERIENCE</span>
+            <h2 className="text-[42px] md:text-[56px] lg:text-[80px] font-bold tracking-tight text-neutral-900 leading-[1.0] font-serif mt-4 mb-6">
               Professional<br/>Experience
             </h2>
-            <p className="max-w-[360px] text-base text-neutral-500 leading-relaxed font-sans font-normal mb-8">
+            <p className="max-w-[620px] lg:max-w-[360px] text-[16px] md:text-[18px] lg:text-base text-neutral-500 leading-[1.75] font-sans font-normal mb-8">
               Over the past 1.5 years, I've collaborated with businesses to create branding, websites, AI-powered content, and digital experiences that deliver measurable value.
             </p>
             
             {/* Company Card with 32px padding */}
-            <div className="flex flex-col gap-3.5 bg-white border border-neutral-300/30 p-8 rounded-[24px] shadow-sm max-w-sm w-full">
+            <div className="flex flex-col gap-3.5 bg-white border border-neutral-300/30 p-6 md:p-8 rounded-[24px] md:rounded-[28px] shadow-sm max-w-sm w-full">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#66C7F4] flex items-center gap-2 font-sans">
                 <Briefcase size={14} /> HUMEXPRO
               </span>
@@ -718,7 +733,7 @@ export default function App() {
           </div>
           
           {/* Right Column (2x2 Grid, 28px gap) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-7">
+          <div className="col-span-1 md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
             {[
               {
                 title: "Brand Identity",
@@ -744,14 +759,14 @@ export default function App() {
               <motion.div 
                 key={idx}
                 whileHover={{ y: -8, boxShadow: "0 12px 30px -10px rgba(0,0,0,0.08)" }}
-                className="bg-white border border-neutral-300/30 p-8 rounded-[24px] flex flex-col gap-6 shadow-sm transition-all h-full"
+                className="bg-white border border-neutral-300/30 p-6 md:p-8 rounded-[24px] md:rounded-[28px] flex flex-col gap-6 shadow-sm transition-all h-full"
               >
                 <div className="w-12 h-12 rounded-full bg-[#66C7F4]/10 flex items-center justify-center text-[#66C7F4] shrink-0">
                   <exp.icon size={22} strokeWidth={2} />
                 </div>
                 <div className="flex flex-col gap-3">
-                  <h3 className="text-[32px] font-bold text-neutral-900 leading-tight font-sans">{exp.title}</h3>
-                  <p className="text-[17px] text-neutral-500 leading-[1.7] font-normal font-sans">{exp.desc}</p>
+                  <h3 className="text-[28px] md:text-[32px] font-bold text-neutral-900 leading-tight font-sans">{exp.title}</h3>
+                  <p className="text-[15px] md:text-[17px] text-neutral-500 leading-[1.7] font-normal font-sans">{exp.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -766,20 +781,20 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative max-w-[1600px] mx-auto w-full px-6 sm:px-10 lg:px-16 py-24 sm:py-32 flex flex-col gap-12 z-30 border-t border-neutral-200/50"
+        className="relative w-full main-container flex flex-col gap-12 z-30 border-t border-neutral-200/50"
       >
         <div className="flex flex-col items-start mb-6">
-          <span className="text-xs uppercase font-bold tracking-widest text-[#66C7F4] mb-2 block font-sans">FEATURED PROJECTS</span>
-          <h2 className="text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05]">
+          <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">FEATURED PROJECTS</span>
+          <h2 className="text-[42px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05] mt-4 mb-6">
             Featured<br/>Projects
           </h2>
-          <p className="max-w-[580px] text-[20px] text-neutral-900/70 leading-relaxed font-sans font-light mt-6">
+          <p className="max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[18px] lg:text-[20px] text-neutral-900/70 leading-[1.75] font-sans font-light mt-6 mb-5 lg:mb-0">
             Every project represents a unique challenge, combining strategy, creativity, and user-centered design to build digital experiences that matter.
           </p>
         </div>
 
-        {/* Project Grid (3-column on desktop, 32px gap) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Project Grid (3-column on desktop, 2-column on tablet, 1-column on mobile) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
           {[
             {
               category: "Brand Identity",
@@ -810,10 +825,10 @@ export default function App() {
                 boxShadow: "0 20px 40px -15px rgba(0,0,0,0.12)"
               }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white border border-neutral-300/30 rounded-[28px] overflow-hidden shadow-sm flex flex-col h-full transition-all duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] group cursor-pointer p-0"
+              className="bg-white border border-neutral-300/30 rounded-[24px] md:rounded-[28px] overflow-hidden shadow-sm flex flex-col h-full transition-all duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] group cursor-pointer p-0"
             >
               {/* Image Container with zoom (320px height, top rounded corners) */}
-              <div className="overflow-hidden h-[320px] relative bg-neutral-100 rounded-t-[28px] w-full">
+              <div className="overflow-hidden h-auto md:h-[320px] relative bg-neutral-100 rounded-t-[24px] md:rounded-t-[28px] w-full">
                 <img 
                   src={project.img} 
                   alt={project.title} 
@@ -824,27 +839,27 @@ export default function App() {
               </div>
 
               {/* Project details (32px padding on bottom and sides, flexbox justify-between) */}
-              <div className="flex flex-col justify-between flex-1 px-[32px] pb-[32px] pt-0">
+              <div className="flex flex-col justify-between flex-1 px-6 pb-6 pt-0 md:px-[32px] md:pb-[32px]">
                 <div className="flex flex-col">
                   {/* Category Label */}
                   <span className="text-[13px] uppercase tracking-[0.12em] font-bold text-[#66C7F4] font-sans block leading-none mt-[28px]">
                     {project.category}
                   </span>
 
-                  {/* Project Title (Occupies exactly 2 lines maximum with h-[96px] on desktop) */}
-                  <h3 className="font-bold text-neutral-900 font-sans text-3xl lg:text-[48px] leading-none h-[64px] lg:h-[96px] overflow-hidden mt-[12px] line-clamp-2">
+                  {/* Project Title */}
+                  <h3 className="font-bold text-neutral-900 font-sans text-3xl md:text-[32px] lg:text-[48px] leading-none h-auto md:h-[64px] lg:h-[96px] overflow-hidden mt-[12px] line-clamp-2">
                     {project.title}
                   </h3>
 
-                  {/* Project Description (4 lines max, height matched to line-height 1.7) */}
-                  <p className="font-sans font-normal text-base lg:text-[17px] text-neutral-900/70 leading-[1.7] h-[110px] lg:h-[116px] overflow-hidden mt-[20px] line-clamp-4">
+                  {/* Project Description */}
+                  <h4 className="font-sans font-normal text-base lg:text-[17px] text-neutral-900/70 leading-[1.7] h-auto md:h-[110px] lg:h-[116px] overflow-hidden mt-[20px] line-clamp-4">
                     {project.desc}
-                  </p>
+                  </h4>
                 </div>
 
                 <div className="flex flex-col">
-                  {/* Tags capsules (38px height, 14px text, 12px gap, 88px container height for 2 rows) */}
-                  <div className="flex flex-wrap gap-[12px] h-[88px] overflow-hidden mt-[32px]">
+                  {/* Tags capsules */}
+                  <div className="flex flex-wrap gap-[12px] h-auto md:h-[88px] overflow-hidden mt-[32px]">
                     {project.tags.map((tag) => (
                       <span 
                         key={tag}
@@ -855,7 +870,7 @@ export default function App() {
                     ))}
                   </div>
 
-                  {/* Call to Action (View Case Study always visible, blue hover effect) */}
+                  {/* Call to Action */}
                   <div className="font-semibold font-sans flex items-center gap-1.5 cursor-pointer text-[#111111] group-hover:text-[#66C7F4] transition-colors duration-300 mt-[28px] text-[16px]">
                     <span>View Case Study</span>
                     <ArrowRight size={16} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -890,24 +905,24 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative max-w-[1600px] mx-auto w-full px-6 sm:px-10 lg:px-16 py-24 sm:py-32 flex flex-col z-30 border-t border-neutral-200/50"
+        className="relative w-full main-container flex flex-col z-30 border-t border-neutral-200/50"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-24 items-start">
           {/* Left Column (35% width on desktop) */}
-          <div className="lg:col-span-4 flex flex-col items-start pt-1">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#66C7F4] mb-4 block font-sans">EXPERTISE</span>
-            <h2 className="text-6xl lg:text-[84px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px]">
+          <div className="col-span-1 md:col-span-4 flex flex-col items-start pt-1">
+            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERTISE</span>
+            <h2 className="text-[42px] md:text-[56px] lg:text-[84px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-4 mb-6">
               More Than<br/>Just Software.
             </h2>
             
             {/* Small description */}
-            <p className="text-base text-neutral-500 leading-relaxed font-sans font-normal mt-[28px] max-w-[420px]">
+            <p className="text-[16px] md:text-[18px] lg:text-base text-neutral-500 leading-[1.75] font-sans font-normal mt-[22px] lg:mt-[28px] max-w-[420px]">
               Design is more than knowing software. I combine creative thinking, business understanding, and visual communication to transform ideas into meaningful brand experiences. The tools help me create—but strategy, storytelling, and user understanding are what make the work effective.
             </p>
           </div>
 
           {/* Right Column (65% width on desktop) */}
-          <div className="lg:col-span-8 flex flex-col pt-0 lg:pt-8 z-10">
+          <div className="col-span-1 md:col-span-8 flex flex-col pt-0 lg:pt-8 z-10">
             <div className="relative w-full">
               <motion.div 
                 variants={{
@@ -921,7 +936,7 @@ export default function App() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-y-16 gap-x-12 relative z-10 mt-[72px] lg:mt-0"
+                className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8 md:gap-x-12 relative z-10 mt-[72px] lg:mt-0"
               >
                 {[
                   {
@@ -969,7 +984,7 @@ export default function App() {
                         scale: { duration: 0.3 },
                         boxShadow: { duration: 0.3 }
                       }}
-                      className="w-[200px] h-[200px] relative bg-white border border-[#EAEAEA] rounded-full flex flex-col items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.015)] group/circle cursor-default z-10"
+                      className="w-[160px] h-[160px] md:w-[200px] md:h-[200px] relative bg-white border border-[#EAEAEA] rounded-full flex flex-col items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.015)] group/circle cursor-default z-10"
                     >
                       {/* SVG Progress Ring */}
                       <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 200 200">
@@ -997,27 +1012,18 @@ export default function App() {
                           {category.icon}
                         </div>
                         {/* Category Title */}
-                        <span 
-                          className="text-neutral-800 tracking-wider uppercase mt-3 font-sans"
-                          style={{ fontSize: '14px', fontWeight: 600 }}
-                        >
+                        <span className="text-neutral-800 tracking-wider uppercase mt-2 md:mt-3 font-sans text-[12px] md:text-[14px] font-semibold">
                           {category.title}
                         </span>
                         {/* Percentage */}
-                        <span 
-                          className="text-neutral-900 font-bold mt-1 font-sans"
-                          style={{ fontSize: '30px', fontWeight: 700, lineHeight: '1.1' }}
-                        >
+                        <span className="text-neutral-900 font-bold mt-0.5 md:mt-1 font-sans text-[24px] md:text-[30px] leading-[1.1]">
                           {category.progress}%
                         </span>
                       </div>
                     </motion.div>
     
                     {/* One short capability statement below each circle */}
-                    <p 
-                      className="font-sans font-normal text-center mt-[24px] max-w-[200px]"
-                      style={{ fontSize: '16px', color: 'rgba(17,17,17,0.65)', lineHeight: '1.4' }}
-                    >
+                    <p className="font-sans font-normal text-center mt-4 md:mt-[24px] max-w-[200px] text-[15px] md:text-[16px] text-neutral-900/65 leading-[1.4]">
                       {category.desc}
                     </p>
                   </motion.div>
@@ -1035,20 +1041,20 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative max-w-[1600px] mx-auto w-full px-6 sm:px-10 lg:px-16 py-24 sm:py-32 z-30 border-t border-neutral-200/50"
+        className="relative w-full main-container z-30 border-t border-neutral-200/50"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-7 flex flex-col gap-6 items-start">
-            <span className="text-xs uppercase font-bold tracking-widest text-[#66C7F4] block">Get in Touch</span>
-            <h2 className="text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.05] font-serif">
+          <div className="col-span-1 lg:col-span-7 flex flex-col gap-6 items-start">
+            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">Get in Touch</span>
+            <h2 className="text-[42px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.05] font-serif mt-4 mb-6">
               Let's Build<br/>Something<br/>Amazing.
             </h2>
-            <p className="text-lg text-neutral-500 leading-relaxed font-light max-w-lg">
+            <p className="text-[16px] md:text-[18px] lg:text-lg text-neutral-500 leading-[1.75] font-sans font-light max-w-[620px] lg:max-w-lg mb-5 lg:mb-0">
               I'm always open to discussing creative projects, freelance opportunities, branding, website design, and innovative digital experiences.
             </p>
             
             {/* Contact Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[20px] mt-9 pointer-events-auto">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[20px] mt-9 pointer-events-auto w-full sm:w-auto">
               {/* Email Me Button */}
               <motion.a 
                 href="mailto:santhosh.designns@gmail.com"
@@ -1063,7 +1069,7 @@ export default function App() {
           </div>
 
           {/* Contact Information Details */}
-          <div className="lg:col-span-5 bg-white border border-neutral-300/30 p-[40px] rounded-3xl shadow-sm flex flex-col gap-[28px]">
+          <div className="col-span-1 lg:col-span-5 bg-white border border-neutral-300/30 p-6 md:p-10 rounded-3xl shadow-sm flex flex-col gap-[28px] w-full">
             <h3 className="text-2xl font-bold text-neutral-900 font-sans">Contact Details</h3>
             
             <div className="flex flex-col gap-[28px] text-sm">
@@ -1150,11 +1156,11 @@ export default function App() {
       </motion.section>
 
       {/* FOOTER */}
-      <footer className="relative max-w-[1600px] mx-auto w-full px-6 sm:px-10 lg:px-16 py-10 z-30 border-t border-neutral-200/30 flex flex-col sm:flex-row justify-between items-center gap-6 text-xs font-medium text-neutral-400 select-none">
+      <footer className="relative w-full px-5 md:px-10 lg:px-16 py-10 max-w-[1400px] mx-auto z-30 border-t border-neutral-200/30 flex flex-col md:flex-row justify-between items-center gap-5 md:gap-6 text-xs font-medium text-neutral-400 select-none text-center">
         <span>Designed & Developed by Santhoshkumar Kanagaraj</span>
         
         {/* Social Links in Footer */}
-        <div className="flex items-center gap-6 pointer-events-auto">
+        <div className="flex items-center justify-center gap-6 pointer-events-auto">
           {/* LinkedIn */}
           <motion.a 
             href="https://www.linkedin.com/in/santhoshkumar-kanagaraj-920763265" 
