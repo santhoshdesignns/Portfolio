@@ -436,7 +436,7 @@ html, body, #root {
 @media (max-width: 767px) {
   .hero-big-text h2 {
     font-size: 18vw !important;
-    opacity: 0.02 !important;
+    opacity: 0.015 !important;
   }
 }
 
@@ -466,3 +466,30 @@ html, body, #root {
     padding-right: 64px;
   }
 }
+
+@media (max-width: 767px) {
+  .hero-scroll-mobile-indicator {
+    bottom: 24px !important;
+  }
+  #about {
+    padding-top: 64px !important;
+    padding-bottom: 0px !important;
+  }
+  #experience {
+    padding-top: 72px !important;
+    padding-bottom: 0px !important;
+  }
+  #projects {
+    padding-top: 72px !important;
+    padding-bottom: 0px !important;
+  }
+  #skills {
+    padding-top: 72px !important;
+    padding-bottom: 0px !important;
+  }
+  #contact {
+    padding-top: 72px !important;
+    padding-bottom: 48px !important;
+  }
+}
+

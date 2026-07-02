@@ -388,7 +388,7 @@ export default function App() {
         )}
       </AnimatePresence>
       {/* 4. MAIN HERO SECTION */}
-      <main id="home" className="relative w-full min-h-[100svh] lg:h-screen flex flex-col justify-between pt-[92px] pb-12 sm:pt-32 sm:pb-16 z-10">
+      <main id="home" className="relative w-full min-h-0 h-auto md:min-h-[100svh] lg:h-screen flex flex-col justify-between pt-[92px] pb-[96px] md:pb-12 sm:pt-32 sm:pb-16 z-10">
         
         {/* BACKGROUND TYPOGRAPHY (Huge "SANTHOSH") */}
         <motion.div 
@@ -399,7 +399,7 @@ export default function App() {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-x-0 bottom-8 md:bottom-12 z-10 text-center pointer-events-none hero-big-text"
+          className="absolute inset-x-0 bottom-0 md:bottom-12 z-10 text-center pointer-events-none hero-big-text"
         >
           <h2 className="opacity-[0.02] lg:opacity-[0.05] text-[18vw] lg:text-[clamp(140px,20vw,420px)] leading-none select-none font-bold text-neutral-900">SANTHOSH</h2>
         </motion.div>
@@ -443,12 +443,12 @@ export default function App() {
         </div>
 
         {/* CONTENT FOREGROUND */}
-        <div className="relative w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 flex-1 flex flex-row items-center justify-between z-30 pointer-events-none mt-10 sm:mt-0 pt-0 h-[75vh] md:h-auto">
-          <div className="w-[65%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-center h-full">
+        <div className="relative w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 flex-1 flex flex-row items-start md:items-center justify-between z-30 pointer-events-none mt-0 pt-0 h-auto md:h-auto">
+          <div className="w-full md:w-[65%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-start h-auto md:justify-center md:h-full">
             
             {/* Small Role Labels */}
             <div 
-              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[10px] sm:mb-8 text-[11px] sm:text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
+              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[16px] sm:mb-8 text-[11px] sm:text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
             >
               <motion.span
                 initial={{ opacity: 0, y: 9 }}
@@ -494,13 +494,13 @@ export default function App() {
               initial={{ opacity: 0, y: 9 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[8px] w-full text-left"
+              className="text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[10px] sm:mb-[8px] w-full text-left"
             >
               Hi, I'm Santhosh.
             </motion.p>
 
             {/* Headline Line-by-Line Reveal */}
-            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[100%] sm:max-w-[640px] mt-0 text-left mx-0">
+            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[60%] md:max-w-[640px] mt-0 text-left mx-0">
               {[
                 "Helping Brands",
                 "Stand Out.",
@@ -537,7 +537,7 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[15px] sm:text-lg lg:text-[20px] text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[95%] sm:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
+              className="text-[15px] sm:text-lg lg:text-[20px] text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[58%] sm:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
             >
               I help businesses build memorable brands through strategic design, modern websites, creative marketing, and AI-powered visual storytelling.
             </motion.p>
@@ -547,7 +547,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="cta-group mt-[24px] sm:mt-10 mb-[28px] md:mb-0 pointer-events-auto flex items-center justify-start gap-5 w-full"
+              className="cta-group mt-[24px] sm:mt-10 mb-[40px] md:mb-0 pointer-events-auto flex items-center justify-start gap-5 w-full"
             >
               {/* View Portfolio Button */}
               <button onClick={() => scrollToSection('projects')} className="cta-pill">
@@ -565,7 +565,7 @@ export default function App() {
           </div>
 
           {/* Right Mobile Mascot (Aligned beside text content on the right) */}
-          <div className="block md:hidden absolute right-[-20px] top-[10%] w-[200px] h-[200px] max-w-[48vw] z-20 pointer-events-none">
+          <div className="block md:hidden absolute right-[-40px] top-[85px] w-[210px] h-[210px] max-w-[55vw] z-20 pointer-events-none">
             <motion.div 
               style={{
                 x: parallaxOffset.x * 10,
@@ -588,12 +588,12 @@ export default function App() {
               >
                 {/* Base Image */}
                 <div 
-                  className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+                  className="absolute inset-0 bg-contain bg-right bg-no-repeat"
                   style={{ backgroundImage: "url('/character-base.jpg')" }}
                 />
                 {/* Spotlight Reveal Overlay */}
                 <div 
-                  className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+                  className="absolute inset-0 bg-contain bg-right bg-no-repeat"
                   style={{ backgroundImage: "url('/character-reveal.jpg')" }}
                 />
               </motion.div>
@@ -606,7 +606,7 @@ export default function App() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 0.6, y: 0 }}
           transition={{ delay: 2.0, duration: 0.8 }}
-          className="absolute bottom-6 inset-x-0 w-full flex flex-col items-center justify-center gap-1.5 z-30 pointer-events-none text-xs tracking-widest font-semibold uppercase text-neutral-400 select-none cursor-pointer md:relative md:bottom-auto md:mt-auto md:mb-0"
+          className="absolute bottom-6 inset-x-0 w-full flex flex-col items-center justify-center gap-1.5 z-30 pointer-events-none text-xs tracking-widest font-semibold uppercase text-neutral-400 select-none cursor-pointer md:relative md:bottom-auto md:mt-auto md:mb-0 hero-scroll-mobile-indicator"
           onClick={() => scrollToSection('about')}
         >
           <span>Scroll Down</span>
@@ -635,23 +635,23 @@ export default function App() {
         variants={sectionVariants}
         className="relative w-full main-container z-30 border-t border-neutral-200/50"
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-16 lg:gap-24 items-start">
           {/* Left Column (40% width on desktop) */}
           <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
             <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">ABOUT ME</span>
-            <h2 className="text-[42px] md:text-[56px] lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-6">
+            <h2 className="text-[42px] md:text-[56px] lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-0 md:mb-6">
               Designing Brands<br/>That People<br/>Remember.
             </h2>
           </div>
 
           {/* Right Column (60% width on desktop) */}
           <div className="col-span-1 md:col-span-7 flex flex-col pt-0 md:pt-[32px] text-neutral-600 font-normal">
-            <p className="max-w-[650px] text-[16px] md:text-[18px] lg:text-[22px] leading-[1.75] text-neutral-900/72 font-sans font-normal mb-5">
+            <p className="max-w-[650px] text-[16px] md:text-[18px] lg:text-[22px] leading-[1.75] text-neutral-900/72 font-sans font-normal mb-0 md:mb-5">
               I'm Santhoshkumar Kanagaraj, a Graphic Designer and UX/UI Designer dedicated to creating memorable brand identities, modern websites, and impactful digital experiences. By combining strategic thinking, creativity, and AI-powered workflows, I help businesses build stronger brands, connect with their audience, and stand out in competitive markets.
             </p>
             
             {/* Core Services Section (28px spacing from paragraph) */}
-            <div className="flex flex-col gap-3 mt-7">
+            <div className="flex flex-col gap-3 mt-[24px] md:mt-7">
               <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] font-sans">WHAT I SPECIALIZE IN</span>
               <div 
                 className="flex flex-wrap items-center font-sans select-none mt-1"
@@ -670,7 +670,7 @@ export default function App() {
         </div>
 
         {/* Statistics Grid (56px spacing from top content, 16px gap on mobile) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-[32px] md:mt-14 w-full">
           {[
             { value: "1.5", label: "Years of Experience", suffix: "+" },
             { value: "300", label: "Creative Assets Delivered", suffix: "+" },
@@ -782,20 +782,20 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative w-full main-container flex flex-col gap-10 md:gap-12 z-30 border-t border-neutral-200/50"
+        className="relative w-full main-container flex flex-col gap-0 md:gap-12 z-30 border-t border-neutral-200/50"
       >
-        <div className="flex flex-col items-start mb-6">
+        <div className="flex flex-col items-start mb-0 md:mb-6">
           <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">FEATURED PROJECTS</span>
-          <h2 className="text-[42px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05] mt-2 mb-6">
+          <h2 className="text-[42px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05] mt-2 mb-0 md:mb-6">
             Featured<br/>Projects
           </h2>
-          <p className="max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[18px] lg:text-[20px] text-neutral-900/70 leading-[1.75] font-sans font-light mt-6 mb-5 lg:mb-0">
+          <p className="max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[18px] lg:text-[20px] text-neutral-900/70 leading-[1.75] font-sans font-light mt-[12px] mb-0 md:mt-6 md:mb-0">
             Every project represents a unique challenge, combining strategy, creativity, and user-centered design to build digital experiences that matter.
           </p>
         </div>
 
         {/* Project Grid (3-column on desktop, 2-column on tablet, 1-column on mobile) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 mt-[24px] md:mt-8">
           {[
             {
               category: "Brand Identity",
@@ -937,7 +937,7 @@ export default function App() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8 md:gap-x-12 relative z-10 mt-[72px] lg:mt-0"
+                className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8 md:gap-x-12 relative z-10 mt-[32px] lg:mt-0"
               >
                 {[
                   {
