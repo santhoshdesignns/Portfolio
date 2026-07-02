@@ -385,9 +385,9 @@ export default function App() {
             </motion.div>
           </>
         )}
-      </AnimatePresence>      {/* 4. MAIN HERO SECTION */}
+      </AnimatePresence>
       {/* 4. MAIN HERO SECTION */}
-      <main id="home" className="relative w-full min-h-[100svh] lg:h-screen flex flex-col justify-between pt-[116px] pb-12 sm:pt-32 sm:pb-16 z-10">
+      <main id="home" className="relative w-full min-h-[100svh] lg:h-screen flex flex-col justify-between pt-[128px] pb-12 sm:pt-32 sm:pb-16 z-10">
         
         {/* BACKGROUND TYPOGRAPHY (Huge "SANTHOSH") */}
         <motion.div 
@@ -398,7 +398,7 @@ export default function App() {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-x-0 bottom-16 md:bottom-12 z-10 text-center pointer-events-none hero-big-text"
+          className="absolute inset-x-0 bottom-8 md:bottom-12 z-10 text-center pointer-events-none hero-big-text"
         >
           <h2 className="opacity-[0.02] lg:opacity-[0.05] text-[18vw] lg:text-[clamp(140px,20vw,420px)] leading-none select-none font-bold text-neutral-900">SANTHOSH</h2>
         </motion.div>
@@ -443,11 +443,11 @@ export default function App() {
 
         {/* CONTENT FOREGROUND */}
         <div className="relative w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 flex-1 flex flex-row items-center justify-between z-30 pointer-events-none mt-10 sm:mt-0 pt-0 h-[75vh] md:h-auto">
-          <div className="w-[60%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-center h-full">
+          <div className="w-[68%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-center h-full">
             
             {/* Small Role Labels */}
             <div 
-              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/65 md:text-neutral-900/70 select-none max-w-full mb-[10px] sm:mb-8 text-[11px] sm:text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
+              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[10px] sm:mb-8 text-[11px] sm:text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
             >
               <motion.span
                 initial={{ opacity: 0, y: 9 }}
@@ -493,13 +493,13 @@ export default function App() {
               initial={{ opacity: 0, y: 9 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-500 text-[15px] sm:text-lg tracking-wide font-medium mb-[10px] w-full text-left"
+              className="text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[10px] w-full text-left"
             >
               Hi, I'm Santhosh.
             </motion.p>
 
             {/* Headline Line-by-Line Reveal */}
-            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[95%] sm:max-w-[640px] mt-0 text-left mx-0">
+            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[100%] sm:max-w-[640px] mt-0 text-left mx-0">
               {[
                 "Helping Brands",
                 "Stand Out.",
@@ -536,7 +536,7 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[15px] sm:text-lg lg:text-[20px] text-neutral-900/72 leading-[1.75] lg:leading-relaxed max-w-[100%] sm:max-w-[500px] font-light mt-[22px] sm:mt-8 text-left mx-0"
+              className="text-[16px] sm:text-lg lg:text-[20px] text-neutral-900/72 leading-[1.65] lg:leading-relaxed max-w-[100%] sm:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
             >
               I help businesses build memorable brands through strategic design, modern websites, creative marketing, and AI-powered visual storytelling.
             </motion.p>
@@ -546,7 +546,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="cta-group mt-[28px] sm:mt-10 mb-[36px] md:mb-0 pointer-events-auto flex items-center justify-start gap-3 w-full"
+              className="cta-group mt-[24px] sm:mt-10 mb-[28px] md:mb-0 pointer-events-auto flex items-center justify-start gap-6 w-full"
             >
               {/* View Portfolio Button */}
               <button onClick={() => scrollToSection('projects')} className="cta-pill">
@@ -564,7 +564,7 @@ export default function App() {
           </div>
 
           {/* Right Mobile Mascot (Aligned beside text content on the right) */}
-          <div className="block md:hidden absolute right-[-10px] top-[14%] w-[180px] h-[180px] max-w-[45vw] z-20 pointer-events-none">
+          <div className="block md:hidden absolute right-[-15px] top-[10%] w-[210px] h-[210px] max-w-[48vw] z-20 pointer-events-none">
             <motion.div 
               style={{
                 x: parallaxOffset.x * 10,
@@ -575,7 +575,7 @@ export default function App() {
             >
               <motion.div
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -12, 0],
                   rotate: [0, 2, 0]
                 }}
                 transition={{

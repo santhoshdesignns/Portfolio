@@ -318,13 +318,13 @@ html, body, #root {
 
 @media (max-width: 767px) {
   .cta-pill {
-    height: 52px;
-    padding: 0 22px;
-    font-size: 15px;
+    height: 54px;
+    padding: 0 24px;
+    font-size: 16px;
   }
   .cta-arrow {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
   }
 }
 
@@ -413,7 +413,7 @@ html, body, #root {
 }
 
 .responsive-hero-heading {
-  font-size: clamp(2.125rem, 10vw, 2.75rem);
+  font-size: clamp(2.3rem, 8vw, 3rem);
   line-height: 0.9;
   letter-spacing: -0.04em;
   text-wrap: balance;
