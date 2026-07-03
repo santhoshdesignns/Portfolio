@@ -568,38 +568,59 @@ html, body, #root {
   }
 }
 
-/* ===== MOBILE MASCOT POSITIONING ===== */
-.mobile-mascot-container {
+/* ===== NEW MOBILE HERO 3D CHARACTER WRAPPER & POSITIONING ===== */
+.hero-3d-wrapper {
   display: block;
   position: absolute;
-  z-index: 20;
+  z-index: 2;
   pointer-events: none;
-  width: clamp(145px, 42vw, 190px);
-  aspect-ratio: 1 / 1.35;
-  right: -20px;
-  top: 185px;
+  overflow: visible;
+  top: 190px;
 }
 
-/* Small screen breakpoint (< 390px) */
-@media (max-width: 389px) {
-  .mobile-mascot-container {
-    width: clamp(145px, 42vw, 165px);
-    right: -24px;
-  }
-}
-
-/* Medium mobile screen size (390px to 480px) */
-@media (min-width: 390px) and (max-width: 480px) {
-  .mobile-mascot-container {
-    width: clamp(170px, 42vw, 200px);
-    right: -20px;
-  }
+.hero-3d-element {
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  overflow: visible !important;
 }
 
 /* Hide on desktop (md: min-width: 768px) */
 @media (min-width: 768px) {
-  .mobile-mascot-container {
+  .hero-3d-wrapper {
     display: none;
+  }
+}
+
+/* Mobile responsive breakpoints for 3D wrapper */
+@media (max-width: 359px) {
+  .hero-3d-wrapper {
+    width: clamp(140px, 44vw, 155px);
+    right: -16px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 389px) {
+  .hero-3d-wrapper {
+    width: clamp(155px, 44vw, 175px);
+    right: -14px;
+  }
+}
+
+@media (min-width: 390px) and (max-width: 429px) {
+  .hero-3d-wrapper {
+    width: clamp(175px, 44vw, 195px);
+    right: -16px;
+  }
+}
+
+@media (min-width: 430px) and (max-width: 767px) {
+  .hero-3d-wrapper {
+    width: clamp(190px, 44vw, 215px);
+    right: -18px;
   }
 }
 

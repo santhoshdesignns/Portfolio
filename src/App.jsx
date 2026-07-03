@@ -579,11 +579,12 @@ export default function App() {
           </div>
 
           {/* Right Mobile Mascot (Aligned beside text content on the right) */}
-          <div className="mobile-mascot-container">
+          <div className="hero-3d-wrapper">
             <motion.div 
               style={{
                 x: parallaxOffset.x * 10,
                 y: parallaxOffset.y * 10,
+                overflow: 'visible'
               }}
               transition={{ type: "spring", damping: 30, stiffness: 80 }}
               className="w-full h-full relative"
@@ -599,16 +600,19 @@ export default function App() {
                   ease: "easeInOut"
                 }}
                 className="w-full h-full relative"
+                style={{ overflow: 'visible' }}
               >
                 {/* Base Image */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-right bg-no-repeat"
-                  style={{ backgroundImage: "url('/character-base.jpg')" }}
+                <img 
+                  src="/character-base.jpg" 
+                  alt="Character Base" 
+                  className="hero-3d-element"
                 />
                 {/* Spotlight Reveal Overlay */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-right bg-no-repeat"
-                  style={{ backgroundImage: "url('/character-reveal.jpg')" }}
+                <img 
+                  src="/character-reveal.jpg" 
+                  alt="Character Reveal" 
+                  className="hero-3d-element absolute inset-0"
                 />
               </motion.div>
             </motion.div>
