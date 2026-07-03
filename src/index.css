@@ -320,7 +320,8 @@ html, body, #root {
   .cta-pill {
     height: 54px;
     padding: 0 24px;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 600;
   }
   .cta-arrow {
     width: 54px;
@@ -413,8 +414,8 @@ html, body, #root {
 }
 
 .responsive-hero-heading {
-  font-size: clamp(2.3rem, 8vw, 3rem);
-  line-height: 0.9;
+  font-size: 44px;
+  line-height: 0.95;
   letter-spacing: -0.04em;
   text-wrap: balance;
 }

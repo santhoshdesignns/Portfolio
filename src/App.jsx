@@ -331,7 +331,7 @@ export default function App() {
                           scrollToSection(item.id);
                         }}
                         whileHover={{ x: 8, color: '#57B9FF' }}
-                        className="text-left font-sans font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-full block text-[22px] leading-[1.4]"
+                        className="text-left font-sans font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-full block text-[20px] leading-[1.4]"
                         style={{ background: 'none', border: 'none' }}
                       >
                         {item.name}
@@ -373,7 +373,7 @@ export default function App() {
                       style={{ height: '52px' }}
                       onClick={() => window.print()}
                     >
-                      <span className="font-semibold font-sans" style={{ fontSize: '16px' }}>Download Resume</span>
+                      <span className="font-semibold font-sans" style={{ fontSize: '17px' }}>Download Resume</span>
                       <span className="flex items-center justify-center rounded-full bg-[#57B9FF] text-white flex-shrink-0" style={{ width: '42px', height: '42px' }}>
                         <svg width="12" height="12" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M5 13L13 5M13 5H6M13 5V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -448,7 +448,7 @@ export default function App() {
             
             {/* Small Role Labels */}
             <div 
-              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[16px] sm:mb-8 text-[11px] sm:text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
+              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[16px] sm:mb-8 text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
             >
               <motion.span
                 initial={{ opacity: 0, y: 9 }}
@@ -494,7 +494,7 @@ export default function App() {
               initial={{ opacity: 0, y: 9 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[10px] sm:mb-[8px] w-full text-left"
+              className="text-[#5F5F5F] sm:text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[10px] sm:mb-[8px] w-full text-left"
             >
               Hi, I'm Santhosh.
             </motion.p>
@@ -537,7 +537,7 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[15px] sm:text-lg lg:text-[20px] text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[58%] sm:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
+              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[58%] sm:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
             >
               I help businesses build memorable brands through strategic design, modern websites, creative marketing, and AI-powered visual storytelling.
             </motion.p>
@@ -635,42 +635,43 @@ export default function App() {
         variants={sectionVariants}
         className="relative w-full main-container z-30 border-t border-neutral-200/50"
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-16 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-[20px] md:gap-16 lg:gap-24 items-start">
           {/* Left Column (40% width on desktop) */}
           <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
-            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">ABOUT ME</span>
-            <h2 className="text-[42px] md:text-[56px] lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-0 md:mb-6">
+            <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">ABOUT ME</span>
+            <h2 className="text-[40px] md:text-[56px] lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-0 md:mb-6">
               Designing Brands<br/>That People<br/>Remember.
             </h2>
           </div>
 
           {/* Right Column (60% width on desktop) */}
           <div className="col-span-1 md:col-span-7 flex flex-col pt-0 md:pt-[32px] text-neutral-600 font-normal">
-            <p className="max-w-[650px] text-[16px] md:text-[18px] lg:text-[22px] leading-[1.75] text-neutral-900/72 font-sans font-normal mb-0 md:mb-5">
+            <p className="max-w-[90%] md:max-w-[650px] text-[16px] md:text-[18px] lg:text-[22px] leading-[1.7] md:leading-[1.75] text-[#5F5F5F] md:text-neutral-900/72 font-sans font-normal mb-0 md:mb-5">
               I'm Santhoshkumar Kanagaraj, a Graphic Designer and UX/UI Designer dedicated to creating memorable brand identities, modern websites, and impactful digital experiences. By combining strategic thinking, creativity, and AI-powered workflows, I help businesses build stronger brands, connect with their audience, and stand out in competitive markets.
             </p>
             
             {/* Core Services Section (28px spacing from paragraph) */}
-            <div className="flex flex-col gap-3 mt-[24px] md:mt-7">
-              <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] font-sans">WHAT I SPECIALIZE IN</span>
+            <div className="flex flex-col gap-3 mt-[28px] md:mt-7">
+              <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] font-sans">WHAT I SPECIALIZE IN</span>
               <div 
-                className="flex flex-wrap items-center font-sans select-none mt-1"
-                style={{ gap: '18px', fontSize: '15px', fontWeight: 600, letterSpacing: '0.05em', color: 'rgba(17, 17, 17, 0.75)' }}
+                className="flex flex-wrap items-center text-left font-sans select-none mt-1"
+                style={{ fontSize: '15px', fontWeight: 600, color: 'rgba(17, 17, 17, 0.75)', lineHeight: 1.8 }}
               >
-                <span>Brand Identity</span>
-                <span className="text-[#66C7F4]">•</span>
-                <span>Website Design</span>
-                <span className="text-[#66C7F4]">•</span>
-                <span>Marketing Creative</span>
-                <span className="text-[#66C7F4]">•</span>
-                <span>AI Video Production</span>
+                {['Brand Identity', 'Website Design', 'Marketing Creative', 'AI Video Production'].map((service, index, arr) => (
+                  <div key={service} className="flex items-center whitespace-nowrap">
+                    <span>{service}</span>
+                    {index < arr.length - 1 && (
+                      <span className="text-[#66C7F4] inline-flex items-center justify-center px-[12px]">•</span>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* Statistics Grid (56px spacing from top content, 16px gap on mobile) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-[32px] md:mt-14 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px] md:gap-4 mt-[28px] md:mt-14 w-full">
           {[
             { value: "1.5", label: "Years of Experience", suffix: "+" },
             { value: "300", label: "Creative Assets Delivered", suffix: "+" },
@@ -678,10 +679,10 @@ export default function App() {
             { value: "10", label: "Businesses Supported", suffix: "+" }
           ].map((stat, idx) => (
             <div key={idx} className="bg-white/65 backdrop-blur-sm border border-neutral-300/30 rounded-[24px] p-5 md:p-8 h-[140px] flex flex-col justify-start md:justify-between items-start text-left shadow-sm hover:shadow-md transition-shadow w-full">
-              <div className="text-[clamp(2.6rem,9vw,3.2rem)] md:text-[64px] font-bold text-neutral-900 leading-none tracking-tighter md:tracking-tight font-sans mb-3 md:mb-0">
+              <div className="text-[48px] md:text-[64px] font-bold text-neutral-900 leading-none tracking-tighter md:tracking-tight font-sans mb-3 md:mb-0">
                 <CountUp end={stat.value} />{stat.suffix}
               </div>
-              <div className="text-[15px] md:text-base font-medium text-neutral-900/65 md:text-neutral-900/60 leading-[1.3] md:leading-none font-sans max-w-[200px] line-clamp-2 md:line-clamp-none">
+              <div className="text-[16px] md:text-base font-medium text-neutral-900/65 md:text-neutral-900/60 leading-[1.3] md:leading-none font-sans max-w-[200px] line-clamp-2 md:line-clamp-none">
                 {stat.label}
               </div>
             </div>
@@ -696,16 +697,16 @@ export default function App() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={sectionVariants}
-        className="relative w-full main-container flex flex-col gap-10 md:gap-16 z-30 border-t border-[#EAEAEA]"
+        className="relative w-full main-container flex flex-col gap-[28px] md:gap-16 z-30 border-t border-[#EAEAEA]"
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-[28px] lg:gap-16 items-start">
           {/* Left Column */}
           <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
-            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERIENCE</span>
-            <h2 className="text-[42px] md:text-[56px] lg:text-[80px] font-bold tracking-tight text-neutral-900 leading-[1.0] font-serif mt-2 mb-6">
+            <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERIENCE</span>
+            <h2 className="text-[40px] md:text-[56px] lg:text-[80px] font-bold tracking-tight text-neutral-900 leading-[1.0] font-serif mt-2 mb-[20px] md:mb-6">
               Professional<br/>Experience
             </h2>
-            <p className="max-w-[620px] lg:max-w-[360px] text-[16px] md:text-[18px] lg:text-base text-neutral-500 leading-[1.75] font-sans font-normal mb-8">
+            <p className="max-w-[90%] md:max-w-[620px] lg:max-w-[360px] text-[16px] md:text-[18px] lg:text-base text-[#5F5F5F] md:text-neutral-500 leading-[1.7] md:leading-[1.75] font-sans font-normal mb-[28px] md:mb-8">
               Over the past 1.5 years, I've collaborated with businesses to create branding, websites, AI-powered content, and digital experiences that deliver measurable value.
             </p>
             
@@ -734,7 +735,7 @@ export default function App() {
           </div>
           
           {/* Right Column (2x2 Grid, 28px gap) */}
-          <div className="col-span-1 md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-7">
+          <div className="col-span-1 md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-7">
             {[
               {
                 title: "Brand Identity",
@@ -767,7 +768,7 @@ export default function App() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <h3 className="text-[28px] md:text-[32px] font-bold text-neutral-900 leading-tight font-sans">{exp.title}</h3>
-                  <p className="text-[15px] md:text-[17px] text-neutral-500 leading-[1.7] font-normal font-sans">{exp.desc}</p>
+                  <p className="text-[17px] md:text-[17px] text-[#5F5F5F] md:text-neutral-500 leading-[1.7] font-normal font-sans">{exp.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -785,17 +786,17 @@ export default function App() {
         className="relative w-full main-container flex flex-col gap-0 md:gap-12 z-30 border-t border-neutral-200/50"
       >
         <div className="flex flex-col items-start mb-0 md:mb-6">
-          <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">FEATURED PROJECTS</span>
-          <h2 className="text-[42px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05] mt-2 mb-0 md:mb-6">
+          <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">FEATURED PROJECTS</span>
+          <h2 className="text-[40px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05] mt-2 mb-0 md:mb-6">
             Featured<br/>Projects
           </h2>
-          <p className="max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[18px] lg:text-[20px] text-neutral-900/70 leading-[1.75] font-sans font-light mt-[12px] mb-0 md:mt-6 md:mb-0">
+          <p className="max-w-[90%] md:max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[18px] lg:text-[20px] text-[#5F5F5F] md:text-neutral-900/70 leading-[1.7] md:leading-[1.75] font-sans font-light mt-[20px] mb-0 md:mt-6 md:mb-0">
             Every project represents a unique challenge, combining strategy, creativity, and user-centered design to build digital experiences that matter.
           </p>
         </div>
 
         {/* Project Grid (3-column on desktop, 2-column on tablet, 1-column on mobile) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 mt-[24px] md:mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 mt-[28px] md:mt-8">
           {[
             {
               category: "Brand Identity",
@@ -848,12 +849,12 @@ export default function App() {
                   </span>
 
                   {/* Project Title */}
-                  <h3 className="font-bold text-neutral-900 font-sans text-3xl md:text-[32px] lg:text-[48px] leading-none h-auto md:h-[64px] lg:h-[96px] overflow-hidden mt-[12px] line-clamp-2">
+                  <h3 className="font-bold text-neutral-900 font-sans text-[28px] md:text-[32px] lg:text-[48px] leading-none h-auto md:h-[64px] lg:h-[96px] overflow-hidden mt-[12px] line-clamp-2">
                     {project.title}
                   </h3>
 
                   {/* Project Description */}
-                  <h4 className="font-sans font-normal text-base lg:text-[17px] text-neutral-900/70 leading-[1.7] h-auto md:h-[110px] lg:h-[116px] overflow-hidden mt-[20px] line-clamp-4">
+                  <h4 className="font-sans font-normal text-[17px] text-neutral-900/70 leading-[1.7] h-auto md:h-[110px] lg:h-[116px] overflow-hidden mt-[20px] line-clamp-4">
                     {project.desc}
                   </h4>
                 </div>
@@ -864,7 +865,7 @@ export default function App() {
                     {project.tags.map((tag) => (
                       <span 
                         key={tag}
-                        className="h-[38px] px-[18px] inline-flex items-center justify-center rounded-full text-[14px] font-medium bg-white text-neutral-800 border border-neutral-300/40 font-sans"
+                        className="h-[38px] px-[18px] inline-flex items-center justify-center rounded-full text-[15px] font-semibold md:text-[14px] md:font-medium bg-white text-neutral-800 border border-neutral-300/40 font-sans"
                       >
                         {tag}
                       </span>
@@ -908,16 +909,16 @@ export default function App() {
         variants={sectionVariants}
         className="relative w-full main-container flex flex-col z-30 border-t border-neutral-200/50"
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-[28px] lg:gap-24 items-start">
           {/* Left Column (35% width on desktop) */}
           <div className="col-span-1 md:col-span-4 flex flex-col items-start pt-1">
-            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERTISE</span>
-            <h2 className="text-[42px] md:text-[56px] lg:text-[84px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-6">
+            <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERTISE</span>
+            <h2 className="text-[40px] md:text-[56px] lg:text-[84px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-0 md:mb-6">
               More Than<br/>Just Software.
             </h2>
             
             {/* Small description */}
-            <p className="text-[16px] md:text-[18px] lg:text-base text-neutral-500 leading-[1.75] font-sans font-normal mt-[22px] lg:mt-[28px] max-w-[420px]">
+            <p className="max-w-[90%] md:max-w-[420px] text-[16px] md:text-[18px] lg:text-base text-[#5F5F5F] md:text-neutral-500 leading-[1.7] md:leading-[1.75] font-sans font-normal mt-[20px] md:mt-[22px] lg:mt-[28px]">
               Design is more than knowing software. I combine creative thinking, business understanding, and visual communication to transform ideas into meaningful brand experiences. The tools help me create—but strategy, storytelling, and user understanding are what make the work effective.
             </p>
           </div>
@@ -937,7 +938,7 @@ export default function App() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8 md:gap-x-12 relative z-10 mt-[32px] lg:mt-0"
+                className="grid grid-cols-1 md:grid-cols-2 gap-y-[20px] md:gap-y-12 gap-x-8 md:gap-x-12 relative z-10 mt-[28px] lg:mt-0"
               >
                 {[
                   {
@@ -1024,7 +1025,7 @@ export default function App() {
                     </motion.div>
     
                     {/* One short capability statement below each circle */}
-                    <p className="font-sans font-normal text-center mt-4 md:mt-[24px] max-w-[200px] text-[15px] md:text-[16px] text-neutral-900/65 leading-[1.4]">
+                    <p className="font-sans font-normal text-center mt-4 md:mt-[24px] max-w-[200px] text-[17px] md:text-[16px] text-[#5F5F5F] md:text-neutral-900/65 leading-[1.7] md:leading-[1.4]">
                       {category.desc}
                     </p>
                   </motion.div>
@@ -1044,23 +1045,23 @@ export default function App() {
         variants={sectionVariants}
         className="relative w-full main-container z-30 border-t border-neutral-200/50"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-[28px] lg:gap-16 items-center">
           <div className="col-span-1 lg:col-span-7 flex flex-col gap-4 items-start">
-            <span className="text-[12px] font-semibold tracking-[0.14em] uppercase text-[#66C7F4] mb-3 block font-sans">Get in Touch</span>
-            <h2 className="text-[42px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.05] font-serif mt-2 mb-6">
+            <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">GET IN TOUCH</span>
+            <h2 className="text-[40px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.05] font-serif mt-2 mb-[20px] md:mb-6">
               Let's Build<br/>Something<br/>Amazing.
             </h2>
-            <p className="text-[16px] md:text-[18px] lg:text-lg text-neutral-500 leading-[1.75] font-sans font-light max-w-[620px] lg:max-w-lg mb-2 md:mb-5 lg:mb-0">
+            <p className="max-w-[90%] md:max-w-[620px] lg:max-w-lg text-[16px] md:text-[18px] lg:text-lg text-[#5F5F5F] md:text-neutral-500 leading-[1.7] md:leading-[1.75] font-sans font-light mb-0 md:mb-5 lg:mb-0">
               I'm always open to discussing creative projects, freelance opportunities, branding, website design, and innovative digital experiences.
             </p>
             
             {/* Contact Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[20px] mt-4 md:mt-9 pointer-events-auto w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[20px] mt-[24px] md:mt-9 pointer-events-auto w-full sm:w-auto">
               {/* Email Me Button */}
               <motion.a 
                 href="mailto:santhosh.designns@gmail.com"
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-between gap-6 bg-white border border-[rgba(0,0,0,0.08)] rounded-full cursor-pointer px-[26px] select-none text-[16px] font-sans font-semibold text-[#111111] w-full sm:w-auto hover:bg-[#5AB8FF] hover:text-white hover:border-[#5AB8FF] transition-all duration-300 group"
+                className="inline-flex items-center justify-between gap-6 bg-white border border-[rgba(0,0,0,0.08)] rounded-full cursor-pointer px-[26px] select-none text-[17px] md:text-[16px] font-sans font-semibold text-[#111111] w-full sm:w-auto hover:bg-[#5AB8FF] hover:text-white hover:border-[#5AB8FF] transition-all duration-300 group"
                 style={{ height: '58px', minWidth: '200px' }}
               >
                 <span>Email Me</span>
@@ -1071,7 +1072,7 @@ export default function App() {
 
           {/* Contact Information Details */}
           <div className="col-span-1 lg:col-span-5 bg-white border border-neutral-300/30 p-6 md:p-10 rounded-3xl shadow-sm flex flex-col gap-[28px] w-full">
-            <h3 className="text-2xl font-bold text-neutral-900 font-sans">Contact Details</h3>
+            <h3 className="text-[28px] md:text-2xl font-bold text-neutral-900 font-sans">Contact Details</h3>
             
             <div className="flex flex-col gap-[28px] text-sm">
               {/* Email */}
@@ -1157,7 +1158,7 @@ export default function App() {
       </motion.section>
 
       {/* FOOTER */}
-      <footer className="relative w-full px-5 md:px-10 lg:px-16 py-10 max-w-[1400px] mx-auto z-30 border-t border-neutral-200/30 flex flex-col md:flex-row justify-between items-center gap-5 md:gap-6 text-xs font-medium text-neutral-400 select-none text-center">
+      <footer className="relative w-full px-5 md:px-10 lg:px-16 py-10 max-w-[1400px] mx-auto z-30 border-t border-neutral-200/30 flex flex-col md:flex-row justify-between items-center gap-5 md:gap-6 text-[15px] md:text-xs font-medium text-neutral-400 select-none text-center">
         <span>Designed & Developed by Santhoshkumar Kanagaraj</span>
         
         {/* Social Links in Footer */}
@@ -1170,7 +1171,7 @@ export default function App() {
             aria-label="Open Santhoshkumar Kanagaraj's LinkedIn profile"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
           >
             <Linkedin size={16} />
             <span>LinkedIn</span>
@@ -1181,7 +1182,7 @@ export default function App() {
             href="mailto:santhosh.designns@gmail.com" 
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
           >
             <Mail size={16} />
             <span>Email</span>
@@ -1192,7 +1193,7 @@ export default function App() {
             onClick={() => window.print()}
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer bg-transparent border-none p-0 text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer bg-transparent border-none p-0 text-[15px] md:text-xs font-medium text-neutral-400"
           >
             <Download size={16} />
             <span>Resume</span>
