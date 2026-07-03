@@ -320,7 +320,7 @@ html, body, #root {
   .cta-pill {
     height: 54px;
     padding: 0 24px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
   }
   .cta-arrow {
@@ -414,10 +414,15 @@ html, body, #root {
 }
 
 .responsive-hero-heading {
-  font-size: 44px;
-  line-height: 0.95;
+  font-size: clamp(38px, 10vw, 42px);
+  line-height: 0.94;
   letter-spacing: -0.04em;
   text-wrap: balance;
+}
+@media (min-width: 390px) {
+  .responsive-hero-heading {
+    font-size: clamp(42px, 10vw, 48px);
+  }
 }
 @media (min-width: 768px) {
   .responsive-hero-heading {
@@ -493,4 +498,109 @@ html, body, #root {
     padding-bottom: 48px !important;
   }
 }
+
+/* ===== PROFESSION LABELS RESPONSIVE LAYOUT & DOTS ===== */
+.profession-container {
+  overflow: hidden;
+  width: 100%;
+  display: block;
+}
+
+.profession-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: -12px;
+  row-gap: 6px;
+}
+
+.profession-item {
+  position: relative;
+  white-space: nowrap;
+  padding-left: 12px; /* Space for the dot */
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+/* The dot */
+.profession-item::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #66C7F4;
+}
+
+/* Medium mobile screen size (390px to 480px) */
+@media (min-width: 390px) {
+  .profession-item {
+    font-size: 11px;
+  }
+}
+
+/* Desktop layout (md: min-width: 768px) */
+@media (min-width: 768px) {
+  .profession-container {
+    overflow: visible;
+  }
+  .profession-wrapper {
+    margin-left: 0;
+    gap: 16px; /* Using desktop gap */
+  }
+  .profession-item {
+    padding-left: 0;
+    font-size: 14px;
+    color: rgba(17, 17, 17, 0.7);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .profession-item::before {
+    display: none; /* Hide the mobile absolute dot on desktop */
+  }
+}
+
+/* ===== MOBILE MASCOT POSITIONING ===== */
+.mobile-mascot-container {
+  display: block;
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  width: clamp(145px, 42vw, 190px);
+  aspect-ratio: 1 / 1.35;
+  right: -20px;
+  top: 185px;
+}
+
+/* Small screen breakpoint (< 390px) */
+@media (max-width: 389px) {
+  .mobile-mascot-container {
+    width: clamp(145px, 42vw, 165px);
+    right: -24px;
+  }
+}
+
+/* Medium mobile screen size (390px to 480px) */
+@media (min-width: 390px) and (max-width: 480px) {
+  .mobile-mascot-container {
+    width: clamp(170px, 42vw, 200px);
+    right: -20px;
+  }
+}
+
+/* Hide on desktop (md: min-width: 768px) */
+@media (min-width: 768px) {
+  .mobile-mascot-container {
+    display: none;
+  }
+}
+
 

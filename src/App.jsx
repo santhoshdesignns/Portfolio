@@ -458,49 +458,49 @@ export default function App() {
           <div className="w-full md:w-[65%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-start h-auto md:justify-center md:h-full">
             
             {/* Small Role Labels */}
-            <div 
-              className="flex flex-wrap items-center justify-start font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[18px] sm:mb-8 text-[14px] gap-x-[8px] gap-y-[8px] md:gap-4 pointer-events-auto w-full"
-            >
-              <motion.span
-                initial={{ opacity: 0, y: 9 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="whitespace-nowrap"
-              >
-                Graphic Designer
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 9 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.85, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="hidden md:inline text-neutral-900/30 font-sans animate-none"
-              >
-                •
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 9 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="whitespace-nowrap"
-              >
-                UX/UI Designer
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 9 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.95, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="hidden md:inline text-neutral-900/30 font-sans animate-none"
-              >
-                •
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 9 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="whitespace-nowrap"
-              >
-                AI Video Creator
-              </motion.span>
+            <div className="profession-container mb-[18px] sm:mb-8 pointer-events-auto">
+              <div className="profession-wrapper">
+                <motion.span
+                  initial={{ opacity: 0, y: 9 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="profession-item"
+                >
+                  Graphic Designer
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 9 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.85, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="hidden md:inline text-neutral-900/30 font-sans animate-none"
+                >
+                  •
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 9 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="profession-item"
+                >
+                  UX/UI Designer
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 9 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.95, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="hidden md:inline text-neutral-900/30 font-sans animate-none"
+                >
+                  •
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 9 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="profession-item"
+                >
+                  AI Video Creator
+                </motion.span>
+              </div>
             </div>
 
             {/* Introductory Line */}
@@ -508,13 +508,13 @@ export default function App() {
               initial={{ opacity: 0, y: 9 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[#5F5F5F] sm:text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[12px] sm:mb-[8px] w-full text-left"
+              className="text-[#5F5F5F] sm:text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[10px] sm:mb-[8px] w-full text-left"
             >
               Hi, I'm Santhosh.
             </motion.p>
 
             {/* Headline Line-by-Line Reveal */}
-            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[58%] md:max-w-[640px] mt-0 text-left mx-0">
+            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[68%] md:max-w-[640px] mt-0 text-left mx-0">
               {[
                 "Helping Brands",
                 "Stand Out.",
@@ -551,7 +551,7 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[60%] md:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
+              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.65] lg:leading-relaxed max-w-[60%] md:max-w-[500px] font-light mt-[24px] sm:mt-8 text-left mx-0"
             >
               I help businesses build memorable brands through strategic design, modern websites, creative marketing, and AI-powered visual storytelling.
             </motion.p>
@@ -579,7 +579,7 @@ export default function App() {
           </div>
 
           {/* Right Mobile Mascot (Aligned beside text content on the right) */}
-          <div className="block md:hidden absolute right-[-25px] top-[155px] w-[200px] h-[280px] z-20 pointer-events-none">
+          <div className="mobile-mascot-container">
             <motion.div 
               style={{
                 x: parallaxOffset.x * 10,
