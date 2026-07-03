@@ -459,12 +459,13 @@ export default function App() {
             
             {/* Small Role Labels */}
             <div 
-              className="flex items-center justify-start whitespace-nowrap overflow-x-auto no-scrollbar font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[16px] sm:mb-8 text-[14px] gap-2 md:gap-4 pointer-events-auto w-full"
+              className="flex flex-wrap items-center justify-start font-semibold tracking-[0.08em] uppercase text-neutral-900/70 select-none max-w-full mb-[18px] sm:mb-8 text-[14px] gap-x-[8px] gap-y-[8px] md:gap-4 pointer-events-auto w-full"
             >
               <motion.span
                 initial={{ opacity: 0, y: 9 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="whitespace-nowrap"
               >
                 Graphic Designer
               </motion.span>
@@ -472,7 +473,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 9 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.85, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="text-neutral-900/30 font-sans animate-none"
+                className="hidden md:inline text-neutral-900/30 font-sans animate-none"
               >
                 •
               </motion.span>
@@ -480,6 +481,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 9 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="whitespace-nowrap"
               >
                 UX/UI Designer
               </motion.span>
@@ -487,7 +489,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 9 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.95, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="text-neutral-900/30 font-sans animate-none"
+                className="hidden md:inline text-neutral-900/30 font-sans animate-none"
               >
                 •
               </motion.span>
@@ -495,6 +497,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 9 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="whitespace-nowrap"
               >
                 AI Video Creator
               </motion.span>
@@ -505,13 +508,13 @@ export default function App() {
               initial={{ opacity: 0, y: 9 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[#5F5F5F] sm:text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[10px] sm:mb-[8px] w-full text-left"
+              className="text-[#5F5F5F] sm:text-neutral-500 text-[16px] sm:text-lg tracking-wide font-medium mb-[12px] sm:mb-[8px] w-full text-left"
             >
               Hi, I'm Santhosh.
             </motion.p>
 
             {/* Headline Line-by-Line Reveal */}
-            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[60%] md:max-w-[640px] mt-0 text-left mx-0">
+            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[58%] md:max-w-[640px] mt-0 text-left mx-0">
               {[
                 "Helping Brands",
                 "Stand Out.",
@@ -548,7 +551,7 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[58%] sm:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
+              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.7] lg:leading-relaxed max-w-[60%] md:max-w-[500px] font-light mt-[20px] sm:mt-8 text-left mx-0"
             >
               I help businesses build memorable brands through strategic design, modern websites, creative marketing, and AI-powered visual storytelling.
             </motion.p>
@@ -558,7 +561,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="cta-group mt-[24px] sm:mt-10 mb-[40px] md:mb-0 pointer-events-auto flex items-center justify-start gap-5 w-full"
+              className="cta-group mt-[28px] sm:mt-10 mb-[40px] md:mb-0 pointer-events-auto flex items-center justify-start gap-5 w-full"
             >
               {/* View Portfolio Button */}
               <button onClick={() => scrollToSection('projects')} className="cta-pill">
@@ -576,7 +579,7 @@ export default function App() {
           </div>
 
           {/* Right Mobile Mascot (Aligned beside text content on the right) */}
-          <div className="block md:hidden absolute right-[-40px] top-[85px] w-[210px] h-[210px] max-w-[55vw] z-20 pointer-events-none">
+          <div className="block md:hidden absolute right-[-25px] top-[155px] w-[200px] h-[280px] z-20 pointer-events-none">
             <motion.div 
               style={{
                 x: parallaxOffset.x * 10,
@@ -587,7 +590,7 @@ export default function App() {
             >
               <motion.div
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -14, 0],
                   rotate: [0, 2, 0]
                 }}
                 transition={{
@@ -599,12 +602,12 @@ export default function App() {
               >
                 {/* Base Image */}
                 <div 
-                  className="absolute inset-0 bg-contain bg-right bg-no-repeat"
+                  className="absolute inset-0 bg-cover bg-right bg-no-repeat"
                   style={{ backgroundImage: "url('/character-base.jpg')" }}
                 />
                 {/* Spotlight Reveal Overlay */}
                 <div 
-                  className="absolute inset-0 bg-contain bg-right bg-no-repeat"
+                  className="absolute inset-0 bg-cover bg-right bg-no-repeat"
                   style={{ backgroundImage: "url('/character-reveal.jpg')" }}
                 />
               </motion.div>
