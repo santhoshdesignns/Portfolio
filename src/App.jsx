@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronDown, Mail, Download, ExternalLink, Calendar, MapPin, Briefcase, GraduationCap, Award, PenTool, Globe, Play, Megaphone, Clock, Palette, Layers, Sparkles, Monitor, Phone, Linkedin, Send, File, ArrowDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Mail, Download, ExternalLink, Calendar, MapPin, Briefcase, GraduationCap, Award, PenTool, Globe, Play, Megaphone, Clock, Palette, Layers, Sparkles, Monitor, Phone, Linkedin, Send, File, ArrowDown, Github } from 'lucide-react';
 
 // Dynamic CountUp Animation Component triggered on scroll-into-view
 function CountUp({ end, duration = 1.5 }) {
@@ -348,7 +348,7 @@ export default function App() {
                       <a href="mailto:santhosh.designns@gmail.com" className="hover:text-[#57B9FF] transition-colors">santhosh.designns@gmail.com</a>
                       <a href="tel:+918508455669" className="hover:text-[#57B9FF] transition-colors">+91 8508455669</a>
                     </div>
-                    <div className="flex gap-4 text-sm font-sans items-center">
+                    <div className="flex gap-3 flex-wrap text-sm font-sans items-center">
                       <a 
                         href="https://www.linkedin.com/in/santhoshkumar-kanagaraj-920763265" 
                         target="_blank" 
@@ -356,7 +356,18 @@ export default function App() {
                         aria-label="Open Santhoshkumar Kanagaraj's LinkedIn profile"
                         className="inline-flex items-center gap-1 text-white hover:text-[#57B9FF] transition-all duration-300 group"
                       >
-                        <span>LinkedIn Profile</span>
+                        <span>LinkedIn</span>
+                        <ExternalLink size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                      </a>
+                      <span className="text-white/20">•</span>
+                      <a 
+                        href="https://github.com/santhoshdesignns/Portfolio" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        aria-label="Open GitHub Repository"
+                        className="inline-flex items-center gap-1 text-white hover:text-[#57B9FF] transition-all duration-300 group"
+                      >
+                        <span>GitHub</span>
                         <ExternalLink size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                       </a>
                       <span className="text-white/20">•</span>
@@ -1152,6 +1163,34 @@ export default function App() {
                   </a>
                 </div>
               </div>
+
+              {/* GitHub */}
+              <div className="flex items-start gap-4">
+                <motion.a
+                  href="https://github.com/santhoshdesignns/Portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -2, backgroundColor: "#5AB8FF" }}
+                  initial={{ y: 0, backgroundColor: "#F5F7FA" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="w-[40px] h-[40px] rounded-full border border-[rgba(0,0,0,0.05)] flex items-center justify-center text-[#5AB8FF] hover:text-white shrink-0 cursor-pointer"
+                >
+                  <Github size={22} strokeWidth={1.8} />
+                </motion.a>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-3xs uppercase tracking-wider font-semibold text-neutral-400 font-sans">GitHub</span>
+                  <a 
+                    href="https://github.com/santhoshdesignns/Portfolio" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    aria-label="Open GitHub Repository"
+                    className="text-[#111] hover:text-[#5AB8FF] font-semibold transition-colors duration-300 inline-flex items-center gap-1 group/link cursor-pointer relative"
+                  >
+                    <span>View My GitHub</span>
+                    <ArrowRight size={14} className="group-hover/link:translate-x-[6px] transition-transform duration-300 text-[#111] group-hover/link:text-[#5AB8FF] transition-colors" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1175,6 +1214,20 @@ export default function App() {
           >
             <Linkedin size={16} />
             <span>LinkedIn</span>
+          </motion.a>
+
+          {/* GitHub */}
+          <motion.a 
+            href="https://github.com/santhoshdesignns/Portfolio" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Open GitHub Repository"
+            whileHover={{ y: -3, color: '#57B9FF' }}
+            transition={{ duration: 0.25 }}
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
+          >
+            <Github size={16} />
+            <span>GitHub</span>
           </motion.a>
           
           {/* Email */}
