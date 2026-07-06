@@ -83,13 +83,15 @@ export default function Navbar() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <button 
-          className="btn-pill btn-primary"
-          onClick={handleDownloadCV}
+        <a 
+          href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+          download="Santhoshkumar-Kanagaraj-Resume.pdf"
+          className="btn-pill btn-primary inline-flex items-center justify-center"
+          style={{ textDecoration: 'none' }}
           aria-label="Download CV"
         >
           Download CV
-        </button>
+        </a>
       </div>
     </nav>
   );

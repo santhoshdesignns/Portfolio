@@ -75,7 +75,7 @@ export default function Contact() {
                 </span>
                 <span className="contact-channel-value">
                   <a 
-                    href="https://linkedin.com/in/santhoshkumar-kanagaraj-920763265" 
+                    href="https://www.linkedin.com/in/santhoshkumar-kanagaraj-920763265" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -120,16 +120,18 @@ export default function Contact() {
             >
               Email Me
             </button>
-            <button 
-              className="btn-pill btn-secondary"
-              onClick={() => window.print()}
+            <a 
+              href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+              download="Santhoshkumar-Kanagaraj-Resume.pdf"
+              className="btn-pill btn-secondary inline-flex items-center justify-center"
+              style={{ textDecoration: 'none' }}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               aria-label="Download Resume"
             >
               Download Resume
-            </button>
+            </a>
           </div>
         </div>
       </div>

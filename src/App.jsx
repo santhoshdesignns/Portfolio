@@ -377,12 +377,13 @@ export default function App() {
 
                   {/* CTA Button */}
                   <div className="mt-[32px]">
-                    <motion.button 
+                    <motion.a 
+                      href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+                      download="Santhoshkumar-Kanagaraj-Resume.pdf"
                       whileHover={{ y: -6 }}
                       transition={{ duration: 0.3 }}
                       className="w-full flex items-center justify-between bg-white text-neutral-900 rounded-full cursor-pointer px-6"
-                      style={{ height: '52px' }}
-                      onClick={() => window.print()}
+                      style={{ height: '52px', textDecoration: 'none' }}
                     >
                       <span className="font-semibold font-sans" style={{ fontSize: '17px' }}>Download Resume</span>
                       <span className="flex items-center justify-center rounded-full bg-[#57B9FF] text-white flex-shrink-0" style={{ width: '42px', height: '42px' }}>
@@ -390,7 +391,7 @@ export default function App() {
                           <path d="M5 13L13 5M13 5H6M13 5V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </span>
-                    </motion.button>
+                    </motion.a>
                   </div>
                 </div>
               </div>
@@ -1249,15 +1250,17 @@ export default function App() {
           </motion.a>
           
           {/* Resume */}
-          <motion.button 
-            onClick={() => window.print()}
+          <motion.a 
+            href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+            download="Santhoshkumar-Kanagaraj-Resume.pdf"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer bg-transparent border-none p-0 text-[15px] md:text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
+            style={{ textDecoration: 'none' }}
           >
             <Download size={16} />
             <span>Resume</span>
-          </motion.button>
+          </motion.a>
         </div>
 
         <span>&copy; 2026</span>
