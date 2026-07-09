@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 
 export default function Contact() {
   const containerVariants = {
@@ -84,21 +84,7 @@ export default function Contact() {
                 </span>
               </div>
 
-              <div className="contact-channel-card" variants={itemVariants}>
-                <span className="contact-channel-label">
-                  <Github size={12} style={{ marginRight: '6px', verticalAlign: 'middle' }} />
-                  GitHub
-                </span>
-                <span className="contact-channel-value">
-                  <a 
-                    href="https://github.com/santhoshdesignns/Portfolio" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    santhoshdesignns
-                  </a>
-                </span>
-              </div>
+
             </div>
           </div>
 

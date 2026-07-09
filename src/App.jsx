@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronDown, Mail, Download, ExternalLink, Calendar, MapPin, Briefcase, GraduationCap, Award, PenTool, Globe, Play, Megaphone, Clock, Palette, Layers, Sparkles, Monitor, Phone, Linkedin, Send, File, ArrowDown, Github } from 'lucide-react';
+import { ArrowRight, ChevronDown, Mail, Download, ExternalLink, Calendar, MapPin, Briefcase, GraduationCap, Award, PenTool, Globe, Play, Megaphone, Clock, Palette, Layers, Sparkles, Monitor, Phone, Linkedin, Send, File, ArrowDown } from 'lucide-react';
+import JewelMarkCaseStudy from './components/JewelMarkCaseStudy.jsx';
+import CreativeWorks from './components/CreativeWorks.jsx';
 
 // Dynamic CountUp Animation Component triggered on scroll-into-view
 function CountUp({ end, duration = 1.5 }) {
@@ -46,8 +48,28 @@ function CountUp({ end, duration = 1.5 }) {
 }
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (path, sectionToScroll = null) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (sectionToScroll) {
+      setTimeout(() => {
+        scrollToSection(sectionToScroll);
+      }, 100);
+    }
+  };
 
   // Body scroll lock when mobile navigation is open
   useEffect(() => {
@@ -208,7 +230,13 @@ export default function App() {
         <div className="logo-wrapper pointer-events-auto">
           <div className="inner">
             <button 
-              onClick={() => scrollToSection('home')}
+              onClick={() => {
+                if (currentPath !== '/') {
+                  navigateTo('/', 'home');
+                } else {
+                  scrollToSection('home');
+                }
+              }}
               aria-label="Home" 
               className="flex items-center justify-center w-12 h-12 rounded-full border border-neutral-300/40 bg-white/80 backdrop-blur-md font-bold text-neutral-900 tracking-tighter text-lg shadow-sm hover:scale-105 hover:bg-white transition-all duration-300 cursor-pointer"
             >
@@ -218,17 +246,28 @@ export default function App() {
         </div>
 
         {/* Desktop Links (Center) */}
-        <nav className="hidden md:flex flex-row items-center gap-1 text-sm tracking-wide font-medium bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
-          <button onClick={() => scrollToSection('about')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">About</button>
-          <span className="text-neutral-300">|</span>
-          <button onClick={() => scrollToSection('experience')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Experience</button>
-          <span className="text-neutral-300">|</span>
-          <button onClick={() => scrollToSection('projects')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Projects</button>
-          <span className="text-neutral-300">|</span>
-          <button onClick={() => scrollToSection('skills')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Skills</button>
-          <span className="text-neutral-300">|</span>
-          <button onClick={() => scrollToSection('contact')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Contact</button>
-        </nav>
+        {(currentPath === '/projects/jewelmark' || currentPath === '/creative-works') ? (
+          <div className="hidden md:flex flex-row items-center gap-1 text-sm tracking-wide font-medium bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
+            <button 
+              onClick={() => navigateTo('/', 'projects')} 
+              className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer flex items-center gap-2 font-sans"
+            >
+              ← Back to Projects
+            </button>
+          </div>
+        ) : (
+          <nav className="hidden md:flex flex-row items-center gap-1 text-sm tracking-wide font-medium bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
+            <button onClick={() => scrollToSection('about')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">About</button>
+            <span className="text-neutral-300">|</span>
+            <button onClick={() => scrollToSection('experience')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Experience</button>
+            <span className="text-neutral-300">|</span>
+            <button onClick={() => scrollToSection('projects')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Projects</button>
+            <span className="text-neutral-300">|</span>
+            <button onClick={() => scrollToSection('skills')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Skills</button>
+            <span className="text-neutral-300">|</span>
+            <button onClick={() => scrollToSection('contact')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Contact</button>
+          </nav>
+        )}
 
         {/* Animated hamburger menu (right) */}
         <div className="burger-wrapper pointer-events-auto">
@@ -328,7 +367,11 @@ export default function App() {
                         animate="visible"
                         onClick={() => {
                           setIsMobileMenuOpen(false);
-                          scrollToSection(item.id);
+                          if (currentPath !== '/') {
+                            navigateTo('/', item.id);
+                          } else {
+                            scrollToSection(item.id);
+                          }
                         }}
                         whileHover={{ x: 8, color: '#57B9FF' }}
                         className="text-left font-sans font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-full block text-[20px] leading-[1.4]"
@@ -360,18 +403,15 @@ export default function App() {
                         <ExternalLink size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                       </a>
                       <span className="text-white/20">•</span>
-                      <a 
-                        href="https://github.com/santhoshdesignns/Portfolio" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label="Open GitHub Repository"
-                        className="inline-flex items-center gap-1 text-white hover:text-[#57B9FF] transition-all duration-300 group"
-                      >
-                        <span>GitHub</span>
-                        <ExternalLink size={13} className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-                      </a>
-                      <span className="text-white/20">•</span>
-                      <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }} className="underline text-white hover:text-[#57B9FF] transition-colors">Portfolio</a>
+                      <a href="#projects" onClick={(e) => { 
+                        e.preventDefault(); 
+                        setIsMobileMenuOpen(false);
+                        if (currentPath === '/projects/jewelmark') {
+                          navigateTo('/', 'projects');
+                        } else {
+                          scrollToSection('projects'); 
+                        }
+                      }} className="underline text-white hover:text-[#57B9FF] transition-colors">Portfolio</a>
                     </div>
                   </div>
 
@@ -399,8 +439,15 @@ export default function App() {
           </>
         )}
       </AnimatePresence>
-      {/* 4. MAIN HERO SECTION */}
-      <main id="home" className="relative w-full min-h-0 h-auto md:min-h-[100svh] lg:h-screen flex flex-col justify-between pt-[92px] pb-[96px] md:pb-12 sm:pt-32 sm:pb-16 z-10">
+
+      {currentPath === '/projects/jewelmark' ? (
+        <JewelMarkCaseStudy navigateTo={navigateTo} />
+      ) : currentPath === '/creative-works' ? (
+        <CreativeWorks navigateTo={navigateTo} />
+      ) : (
+        <>
+          {/* 4. MAIN HERO SECTION */}
+          <main id="home" className="relative w-full min-h-0 h-auto md:min-h-[100svh] lg:h-screen flex flex-col justify-between pt-[92px] pb-[96px] md:pb-12 sm:pt-32 sm:pb-16 z-10">
         
         {/* BACKGROUND TYPOGRAPHY (Huge "SANTHOSH") */}
         <motion.div 
@@ -818,18 +865,22 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 mt-[28px] md:mt-8">
           {[
             {
-              category: "Brand Identity",
+              category: "BRAND IDENTITY",
               title: "JewelMark Branding",
-              desc: "Developed a luxury brand identity including logo applications, premium packaging, stationery, social media creatives, and AI-powered promotional content to create a consistent and memorable customer experience.",
-              tags: ["Brand Identity", "Luxury Branding", "AI Video Creation", "Social Media", "Adobe Illustrator", "Photoshop"],
-              img: "/project-jewelmark.jpg"
+              desc: "Developed a luxury brand identity including logo applications, premium packaging, stationery, social media creatives, and AI-powered promotional content.",
+              tags: ["Brand Identity", "Luxury Branding", "AI Video Creation", "Social Media"],
+              img: "/jewelmark-logo-final.png",
+              imgClass: "object-contain bg-black p-8",
+              route: "/projects/jewelmark",
+              cta: "View Case Study"
             },
             {
-              category: "Website Design",
-              title: "Company Website",
-              desc: "Designed responsive business websites with clean layouts, intuitive navigation, and modern user experiences using Figma and Antigravity.",
-              tags: ["Website Design", "UI Design", "Responsive Design", "Figma", "Antigravity", "UX Design"],
-              img: "/project-website.jpg"
+              category: "CREATIVE DESIGN",
+              title: "Creative Works",
+              desc: "A collection of posters, banners, and flyers designed to communicate clearly, capture attention, and support brand and marketing goals across digital and print platforms.",
+              tags: ["Poster Design", "Banner Design", "Flyer Design", "Print & Digital"],
+              img: "/project-creative.jpg",
+              cta: "View Creative Works"
             },
             {
               category: "Marketing Design",
@@ -841,6 +892,11 @@ export default function App() {
           ].map((project, idx) => (
             <motion.div 
               key={idx}
+              onClick={() => {
+                if (project.route) {
+                  navigateTo(project.route);
+                }
+              }}
               whileHover={{ 
                 y: -10,
                 boxShadow: "0 20px 40px -15px rgba(0,0,0,0.12)"
@@ -853,7 +909,7 @@ export default function App() {
                 <img 
                   src={project.img} 
                   alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className={`w-full h-full ${project.imgClass || 'object-cover'} group-hover:scale-105 transition-transform duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)]`}
                 />
                 {/* Subtle Image Overlay on Hover */}
                 <div className="absolute inset-0 bg-neutral-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
@@ -893,7 +949,7 @@ export default function App() {
 
                   {/* Call to Action */}
                   <div className="font-semibold font-sans flex items-center gap-1.5 cursor-pointer text-[#111111] group-hover:text-[#66C7F4] transition-colors duration-300 mt-[28px] text-[16px]">
-                    <span>View Case Study</span>
+                    <span>{project.cta || "View Case Study"}</span>
                     <ArrowRight size={16} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
@@ -1172,33 +1228,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* GitHub */}
-              <div className="flex items-start gap-4">
-                <motion.a
-                  href="https://github.com/santhoshdesignns/Portfolio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -2, backgroundColor: "#5AB8FF" }}
-                  initial={{ y: 0, backgroundColor: "#F5F7FA" }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="w-[40px] h-[40px] rounded-full border border-[rgba(0,0,0,0.05)] flex items-center justify-center text-[#5AB8FF] hover:text-white shrink-0 cursor-pointer"
-                >
-                  <Github size={22} strokeWidth={1.8} />
-                </motion.a>
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-3xs uppercase tracking-wider font-semibold text-neutral-400 font-sans">GitHub</span>
-                  <a 
-                    href="https://github.com/santhoshdesignns/Portfolio" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    aria-label="Open GitHub Repository"
-                    className="text-[#111] hover:text-[#5AB8FF] font-semibold transition-colors duration-300 inline-flex items-center gap-1 group/link cursor-pointer relative"
-                  >
-                    <span>View My GitHub</span>
-                    <ArrowRight size={14} className="group-hover/link:translate-x-[6px] transition-transform duration-300 text-[#111] group-hover/link:text-[#5AB8FF] transition-colors" />
-                  </a>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -1224,19 +1254,7 @@ export default function App() {
             <span>LinkedIn</span>
           </motion.a>
 
-          {/* GitHub */}
-          <motion.a 
-            href="https://github.com/santhoshdesignns/Portfolio" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="Open GitHub Repository"
-            whileHover={{ y: -3, color: '#57B9FF' }}
-            transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
-          >
-            <Github size={16} />
-            <span>GitHub</span>
-          </motion.a>
+
           
           {/* Email */}
           <motion.a 
@@ -1265,6 +1283,8 @@ export default function App() {
 
         <span>&copy; 2026</span>
       </footer>
+      </>
+      )}
 
     </div>
   );
