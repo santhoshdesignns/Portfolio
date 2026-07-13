@@ -33,7 +33,7 @@ export default function CreativeWorks({ navigateTo }) {
         id: "poster-1",
         title: "Modern Art Exhibition",
         category: "Exhibition Poster",
-        img: "/creative-poster-1.jpg",
+        img: `${import.meta.env.BASE_URL}creative-poster-1.jpg`,
         desc: "Designed using a clean modular grid, bold serif typography, and balanced abstract geometries to guide reader attention."
       }
     ],
@@ -42,7 +42,7 @@ export default function CreativeWorks({ navigateTo }) {
         id: "banner-1",
         title: "Design is Strategy Campaign",
         category: "Studio Promo Banner",
-        img: "/creative-banner-1.jpg",
+        img: `${import.meta.env.BASE_URL}creative-banner-1.jpg`,
         desc: "A horizontal banner designed for print wall hanging and digital campaigns, utilizing a clean neutral grey aesthetic."
       }
     ],
@@ -51,7 +51,7 @@ export default function CreativeWorks({ navigateTo }) {
         id: "flyer-1",
         title: "Studio Elan Art Direction",
         category: "A5 Marketing Flyer",
-        img: "/creative-flyer-1.jpg",
+        img: `${import.meta.env.BASE_URL}creative-flyer-1.jpg`,
         desc: "An elegant marketing layout organizing services and contact details around a central visual focal point."
       }
     ]
@@ -99,7 +99,7 @@ export default function CreativeWorks({ navigateTo }) {
           <div className="md:col-span-5 flex items-center justify-center p-0 md:p-2 bg-transparent w-full">
             <div className="overflow-hidden rounded-[24px] border border-neutral-200 shadow-sm w-full bg-neutral-100">
               <img 
-                src="/project-creative.jpg" 
+                src={`${import.meta.env.BASE_URL}project-creative.jpg`} 
                 alt="Creative Works Composition Mockup" 
                 className="w-full h-auto object-cover aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10]"
               />
@@ -318,7 +318,7 @@ export default function CreativeWorks({ navigateTo }) {
           </motion.a>
           
           <motion.a 
-            href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+            href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
             download="Santhoshkumar-Kanagaraj-Resume.pdf"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}

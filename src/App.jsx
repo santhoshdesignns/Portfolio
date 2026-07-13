@@ -48,20 +48,31 @@ function CountUp({ end, duration = 1.5 }) {
 }
 
 export default function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const getNormalizedPath = (path) => {
+    const base = import.meta.env.BASE_URL;
+    if (base !== '/' && path.startsWith(base)) {
+      return path.slice(base.length - 1);
+    }
+    return path;
+  };
+
+  const [currentPath, setCurrentPath] = useState(getNormalizedPath(window.location.pathname));
+  const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(getNormalizedPath(window.location.pathname));
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const navigateTo = (path, sectionToScroll = null) => {
-    window.history.pushState({}, '', path);
+    const base = import.meta.env.BASE_URL;
+    const targetPath = base !== '/' ? (path === '/' ? base : `${base.slice(0, -1)}${path}`) : path;
+    window.history.pushState({}, '', targetPath);
     setCurrentPath(path);
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (sectionToScroll) {
@@ -418,7 +429,7 @@ export default function App() {
                   {/* CTA Button */}
                   <div className="mt-[32px]">
                     <motion.a 
-                      href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+                      href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
                       download="Santhoshkumar-Kanagaraj-Resume.pdf"
                       whileHover={{ y: -6 }}
                       transition={{ duration: 0.3 }}
@@ -652,13 +663,13 @@ export default function App() {
               >
                 {/* Base Image */}
                 <img 
-                  src="/character-base.jpg" 
+                  src={`${import.meta.env.BASE_URL}character-base.jpg`} 
                   alt="Character Base" 
                   className="hero-3d-element"
                 />
                 {/* Spotlight Reveal Overlay */}
                 <img 
-                  src="/character-reveal.jpg" 
+                  src={`${import.meta.env.BASE_URL}character-reveal.jpg`} 
                   alt="Character Reveal" 
                   className="hero-3d-element absolute inset-0"
                 />
@@ -869,7 +880,7 @@ export default function App() {
               title: "JewelMark Branding",
               desc: "Developed a luxury brand identity including logo applications, premium packaging, stationery, social media creatives, and AI-powered promotional content.",
               tags: ["Brand Identity", "Luxury Branding", "AI Video Creation", "Social Media"],
-              img: "/jewelmark-logo-final.png",
+              img: `${import.meta.env.BASE_URL}jewelmark-logo-final.png`,
               imgClass: "object-contain bg-black p-8",
               route: "/projects/jewelmark",
               cta: "View Case Study"
@@ -879,7 +890,7 @@ export default function App() {
               title: "Creative Works",
               desc: "A collection of posters, banners, and flyers designed to communicate clearly, capture attention, and support brand and marketing goals across digital and print platforms.",
               tags: ["Poster Design", "Banner Design", "Flyer Design", "Print & Digital"],
-              img: "/project-creative.jpg",
+              img: `${import.meta.env.BASE_URL}project-creative.jpg`,
               cta: "View Creative Works"
             },
             {
@@ -887,7 +898,7 @@ export default function App() {
               title: "Creative Campaigns",
               desc: "Created marketing creatives, brochures, social media assets, promotional materials, and visual campaigns that strengthened brand communication across digital and print platforms.",
               tags: ["Marketing Design", "Branding", "Content Creation", "Visual Storytelling", "Adobe InDesign", "Creative Direction"],
-              img: "/project-marketing.jpg"
+              img: `${import.meta.env.BASE_URL}project-marketing.jpg`
             }
           ].map((project, idx) => (
             <motion.div 
@@ -1269,7 +1280,7 @@ export default function App() {
           
           {/* Resume */}
           <motion.a 
-            href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+            href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
             download="Santhoshkumar-Kanagaraj-Resume.pdf"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}

@@ -107,7 +107,7 @@ export default function Contact() {
               Email Me
             </button>
             <a 
-              href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
               download="Santhoshkumar-Kanagaraj-Resume.pdf"
               className="btn-pill btn-secondary inline-flex items-center justify-center"
               style={{ textDecoration: 'none' }}

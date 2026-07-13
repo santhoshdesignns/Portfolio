@@ -49,7 +49,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
             <div className="block md:hidden w-full my-6 text-center">
               <div className="max-w-[75%] mx-auto flex items-center justify-center">
                 <img 
-                  src="/jewelmark-logo-hero.png" 
+                  src={`${import.meta.env.BASE_URL}jewelmark-logo-hero.png`} 
                   alt="JewelMark Logo" 
                   className="w-full h-auto object-contain max-h-[160px]"
                 />
@@ -69,7 +69,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
           {/* RIGHT SIDE: Centered high-res logo - hidden on mobile, shown from tablet up */}
           <div className="hidden md:flex md:col-span-5 items-center justify-center p-4 bg-transparent">
             <img 
-              src="/jewelmark-logo-hero.png" 
+              src={`${import.meta.env.BASE_URL}jewelmark-logo-hero.png`} 
               alt="JewelMark Official Logo" 
               className="w-full h-auto object-contain max-h-[280px]"
             />
@@ -152,19 +152,19 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
               {
                 num: "01",
                 label: "INITIAL SKETCH",
-                img: "/logo-evolution-1.png",
+                img: `${import.meta.env.BASE_URL}logo-evolution-1.png`,
                 desc: "The original idea explored the JewelMark initials, jewellery symbolism, and an upward movement representing growth."
               },
               {
                 num: "02",
                 label: "DIGITAL REFINEMENT",
-                img: "/logo-evolution-2.png",
+                img: `${import.meta.env.BASE_URL}logo-evolution-2.png`,
                 desc: "The concept was simplified into a cleaner digital form, improving structure, balance, and visual clarity."
               },
               {
                 num: "03",
                 label: "FINAL IDENTITY",
-                img: "/logo-evolution-3.png",
+                img: `${import.meta.env.BASE_URL}logo-evolution-3.png`,
                 desc: "The final identity refined the symbol into a distinctive brand mark with a more polished and consistent visual direction."
               }
             ].map((stage) => (
@@ -309,7 +309,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
           </motion.a>
           
           <motion.a 
-            href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+            href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
             download="Santhoshkumar-Kanagaraj-Resume.pdf"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}

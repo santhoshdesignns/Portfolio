@@ -84,7 +84,7 @@ export default function Navbar() {
         transition={{ duration: 0.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <a 
-          href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+          href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
           download="Santhoshkumar-Kanagaraj-Resume.pdf"
           className="btn-pill btn-primary inline-flex items-center justify-center"
           style={{ textDecoration: 'none' }}

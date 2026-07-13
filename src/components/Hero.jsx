@@ -79,7 +79,7 @@ export default function Hero() {
               View Projects
             </button>
             <a 
-              href="/Santhoshkumar-Kanagaraj-Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Santhoshkumar-Kanagaraj-Resume.pdf`}
               download="Santhoshkumar-Kanagaraj-Resume.pdf"
               className="btn-pill btn-secondary inline-flex items-center justify-center"
               style={{ color: '#FFFFFF', borderColor: 'rgba(255, 255, 255, 0.3)', textDecoration: 'none' }}
