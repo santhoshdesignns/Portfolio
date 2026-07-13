@@ -596,31 +596,11 @@ html, body, #root {
 }
 
 /* Mobile responsive breakpoints for 3D wrapper */
-@media (max-width: 359px) {
+@media (max-width: 767px) {
   .hero-3d-wrapper {
-    width: clamp(140px, 44vw, 155px);
-    right: -16px;
-  }
-}
-
-@media (min-width: 360px) and (max-width: 389px) {
-  .hero-3d-wrapper {
-    width: clamp(155px, 44vw, 175px);
-    right: -14px;
-  }
-}
-
-@media (min-width: 390px) and (max-width: 429px) {
-  .hero-3d-wrapper {
-    width: clamp(175px, 44vw, 195px);
-    right: -16px;
-  }
-}
-
-@media (min-width: 430px) and (max-width: 767px) {
-  .hero-3d-wrapper {
-    width: clamp(190px, 44vw, 215px);
-    right: -18px;
+    right: -85px;
+    top: 150px;
+    width: auto;
   }
 }
 

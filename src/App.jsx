@@ -474,47 +474,10 @@ export default function App() {
           <h2 className="opacity-[0.02] lg:opacity-[0.05] text-[18vw] lg:text-[clamp(140px,20vw,420px)] leading-none select-none font-bold text-neutral-900">SANTHOSH</h2>
         </motion.div>
 
-        {/* 3D CHARACTER IMAGES CONTAINER (Desktop/Tablet absolute background) */}
-        <div className="hidden md:block absolute lg:inset-0 right-0 top-[12%] bottom-[10%] w-[60vw] lg:w-full z-0 lg:z-20 pointer-events-none overflow-hidden opacity-45 lg:opacity-100">
-          <motion.div 
-            style={{
-              x: parallaxOffset.x * 14,
-              y: parallaxOffset.y * 14,
-            }}
-            transition={{ type: "spring", damping: 30, stiffness: 80 }}
-            className="w-full h-full relative"
-          >
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="w-full h-full relative lg:left-[8%] xl:left-[14%]"
-            >
-              {/* Base Image */}
-              <div 
-                className="absolute inset-0 bg-contain lg:bg-cover bg-no-repeat hero-image-position hero-image-container bg-right lg:bg-center"
-                style={{ backgroundImage: `url('${import.meta.env.BASE_URL}character-base.jpg')` }}
-              />
-
-              {/* Spotlight Reveal Layer */}
-              <canvas id="reveal-canvas" ref={canvasRef} className="hidden lg:block" />
-              <div 
-                ref={revealImgRef}
-                className="hero-reveal-img bg-contain lg:bg-cover bg-no-repeat hero-image-position bg-right lg:bg-center"
-                style={{ backgroundImage: `url('${import.meta.env.BASE_URL}character-reveal.jpg')` }}
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-
         {/* CONTENT FOREGROUND */}
-        <div className="relative w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 flex-1 flex flex-row items-start md:items-center justify-between z-30 pointer-events-none mt-0 pt-0 h-auto md:h-auto">
-          <div className="w-full md:w-[65%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-start h-auto md:justify-center md:h-full">
+        <div className="relative w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 flex-1 flex flex-row items-stretch md:items-center justify-between z-30 pointer-events-none mt-0 pt-0 h-auto md:h-auto">
+          {/* LEFT COLUMN */}
+          <div className="w-full md:w-[50%] lg:w-[55%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-start h-auto md:justify-center md:h-full">
             
             {/* Small Role Labels */}
             <div className="profession-container mb-[18px] sm:mb-8 pointer-events-auto">
@@ -610,7 +573,7 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.65] lg:leading-relaxed max-w-[60%] md:max-w-[500px] font-light mt-[24px] sm:mt-8 text-left mx-0"
+              className="text-[16px] sm:text-lg lg:text-[20px] text-[#5F5F5F] sm:text-neutral-900/72 leading-[1.65] lg:leading-relaxed max-w-[90%] md:max-w-[500px] font-light mt-[24px] sm:mt-8 text-left mx-0"
             >
               I help businesses build memorable brands through strategic design, modern websites, creative marketing, and AI-powered visual storytelling.
             </motion.p>
@@ -637,43 +600,64 @@ export default function App() {
             </motion.div>
           </div>
 
+          {/* RIGHT COLUMN (DESKTOP) */}
+          <div className="hidden md:flex md:w-[50%] lg:w-[45%] h-full min-h-[400px] lg:min-h-0 items-center justify-end pointer-events-auto relative overflow-visible">
+            <motion.div 
+              style={{
+                x: parallaxOffset.x * 12,
+                y: parallaxOffset.y * 12,
+              }}
+              transition={{ type: "spring", damping: 30, stiffness: 80 }}
+              className="w-full h-full max-h-[85vh] flex items-center justify-end relative overflow-visible"
+            >
+              <motion.img
+                src={`${import.meta.env.BASE_URL}character-reveal.jpg`}
+                alt="3D Character"
+                className="w-full h-full max-h-[85vh] object-contain object-right mix-blend-multiply select-none"
+                animate={{
+                  y: [-10, 10, -10],
+                  rotate: [-1.5, 1.5, -1.5]
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+          </div>
+
           {/* Right Mobile Mascot (Aligned beside text content on the right) */}
           <div className="hero-3d-wrapper">
             <motion.div 
               style={{
-                x: parallaxOffset.x * 10,
-                y: parallaxOffset.y * 10,
+                x: parallaxOffset.x * 8,
+                y: parallaxOffset.y * 8,
                 overflow: 'visible'
               }}
               transition={{ type: "spring", damping: 30, stiffness: 80 }}
-              className="w-full h-full relative"
+              className="relative overflow-visible"
             >
-              <motion.div
+              <motion.img
+                src={`${import.meta.env.BASE_URL}character-reveal.jpg`}
+                alt="Character Mascot"
+                className="mix-blend-multiply select-none"
+                style={{
+                  height: 'clamp(170px, 22vh, 220px)',
+                  width: 'auto',
+                  maxWidth: 'none',
+                  display: 'block'
+                }}
                 animate={{
-                  y: [0, -14, 0],
-                  rotate: [0, 2, 0]
+                  y: [-8, 8, -8],
+                  rotate: [-1.5, 1.5, -1.5]
                 }}
                 transition={{
-                  duration: 5,
+                  duration: 7,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="w-full h-full relative"
-                style={{ overflow: 'visible' }}
-              >
-                {/* Base Image */}
-                <img 
-                  src={`${import.meta.env.BASE_URL}character-base.jpg`} 
-                  alt="Character Base" 
-                  className="hero-3d-element"
-                />
-                {/* Spotlight Reveal Overlay */}
-                <img 
-                  src={`${import.meta.env.BASE_URL}character-reveal.jpg`} 
-                  alt="Character Reveal" 
-                  className="hero-3d-element absolute inset-0"
-                />
-              </motion.div>
+              />
             </motion.div>
           </div>
         </div>
