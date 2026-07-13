@@ -575,16 +575,24 @@ html, body, #root {
   z-index: 2;
   pointer-events: none;
   overflow: visible;
-  top: 190px;
+  top: 110px;
+  right: 16px;
+  width: 130px;
+}
+
+@media (min-width: 480px) {
+  .hero-3d-wrapper {
+    width: 150px;
+    top: 100px;
+    right: 24px;
+  }
 }
 
 .hero-3d-element {
   width: 100% !important;
   height: auto !important;
-  max-width: none !important;
   display: block !important;
   object-fit: contain !important;
-  object-position: center !important;
   overflow: visible !important;
 }
 
@@ -592,15 +600,6 @@ html, body, #root {
 @media (min-width: 768px) {
   .hero-3d-wrapper {
     display: none;
-  }
-}
-
-/* Mobile responsive breakpoints for 3D wrapper */
-@media (max-width: 767px) {
-  .hero-3d-wrapper {
-    right: -85px;
-    top: 150px;
-    width: auto;
   }
 }
 

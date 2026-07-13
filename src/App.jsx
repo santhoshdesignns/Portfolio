@@ -477,7 +477,7 @@ export default function App() {
         {/* CONTENT FOREGROUND */}
         <div className="relative w-full max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 flex-1 flex flex-row items-stretch md:items-center justify-between z-30 pointer-events-none mt-0 pt-0 h-auto md:h-auto">
           {/* LEFT COLUMN */}
-          <div className="w-full md:w-[50%] lg:w-[55%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-start h-auto md:justify-center md:h-full">
+          <div className="w-full md:w-[50%] lg:w-[45%] sm:max-w-[640px] flex flex-col items-start text-left pointer-events-auto md:-ml-10 lg:-ml-14 px-0 justify-start h-auto md:justify-center md:h-full">
             
             {/* Small Role Labels */}
             <div className="profession-container mb-[18px] sm:mb-8 pointer-events-auto">
@@ -536,7 +536,7 @@ export default function App() {
             </motion.p>
 
             {/* Headline Line-by-Line Reveal */}
-            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[68%] md:max-w-[640px] mt-0 text-left mx-0">
+            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[60%] sm:max-w-[65%] md:max-w-none mt-0 text-left mx-0">
               {[
                 "Helping Brands",
                 "Stand Out.",
@@ -601,22 +601,21 @@ export default function App() {
           </div>
 
           {/* RIGHT COLUMN (DESKTOP) */}
-          <div className="hidden md:flex md:w-[50%] lg:w-[45%] h-full min-h-[400px] lg:min-h-0 items-center justify-end pointer-events-auto relative overflow-visible">
+          <div className="hidden md:flex md:w-[50%] lg:w-[40%] h-full items-end justify-end pointer-events-auto relative overflow-visible">
             <motion.div 
               style={{
                 x: parallaxOffset.x * 12,
                 y: parallaxOffset.y * 12,
               }}
               transition={{ type: "spring", damping: 30, stiffness: 80 }}
-              className="w-full h-full max-h-[85vh] flex items-center justify-end relative overflow-visible"
+              className="w-full h-full max-h-[85vh] flex items-end justify-end relative overflow-visible"
             >
               <motion.img
-                src={`${import.meta.env.BASE_URL}character-reveal.jpg`}
+                src={`${import.meta.env.BASE_URL}Fav icon.png`}
                 alt="3D Character"
-                className="w-full h-full max-h-[85vh] object-contain object-right mix-blend-multiply select-none"
+                className="w-full h-[550px] lg:h-[700px] xl:h-[750px] object-contain object-bottom-right select-none"
                 animate={{
-                  y: [-10, 10, -10],
-                  rotate: [-1.5, 1.5, -1.5]
+                  y: [0, -10, 0]
                 }}
                 transition={{
                   duration: 7,
@@ -639,18 +638,11 @@ export default function App() {
               className="relative overflow-visible"
             >
               <motion.img
-                src={`${import.meta.env.BASE_URL}character-reveal.jpg`}
+                src={`${import.meta.env.BASE_URL}Fav icon.png`}
                 alt="Character Mascot"
-                className="mix-blend-multiply select-none"
-                style={{
-                  height: 'clamp(170px, 22vh, 220px)',
-                  width: 'auto',
-                  maxWidth: 'none',
-                  display: 'block'
-                }}
+                className="w-full h-auto object-contain select-none"
                 animate={{
-                  y: [-8, 8, -8],
-                  rotate: [-1.5, 1.5, -1.5]
+                  y: [0, -10, 0]
                 }}
                 transition={{
                   duration: 7,
