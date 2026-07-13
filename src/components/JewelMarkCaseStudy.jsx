@@ -164,8 +164,8 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
               {
                 num: "03",
                 label: "FINAL IDENTITY",
-                img: `${import.meta.env.BASE_URL}logo-evolution-3.png`,
-                desc: "The final identity refined the symbol into a distinctive brand mark with a more polished and consistent visual direction."
+                img: `${import.meta.env.BASE_URL}logo-evolution-3.jpg`,
+                desc: "The final identity refined the concept into a premium, modern jewellery brand mark, balancing elegance, simplicity, and strong brand recognition across digital and print applications."
               }
             ].map((stage) => (
               <motion.div 
@@ -181,7 +181,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
                 className="flex flex-col items-center text-center h-full relative"
               >
                 {/* Image Card */}
-                <div className="h-[260px] w-full max-w-sm bg-white border border-neutral-200/50 rounded-[20px] p-8 flex items-center justify-center shadow-sm overflow-hidden z-10">
+                <div className={`h-[260px] w-full max-w-sm bg-white border border-neutral-200/50 rounded-[20px] p-8 flex items-center justify-center overflow-hidden z-10 ${stage.num === '03' ? '' : 'shadow-sm'}`}>
                   <img 
                     src={stage.img} 
                     alt={stage.label} 
