@@ -498,7 +498,7 @@ export default function App() {
               {/* Base Image */}
               <div 
                 className="absolute inset-0 bg-contain lg:bg-cover bg-no-repeat hero-image-position hero-image-container bg-right lg:bg-center"
-                style={{ backgroundImage: "url('/character-base.jpg')" }}
+                style={{ backgroundImage: `url('${import.meta.env.BASE_URL}character-base.jpg')` }}
               />
 
               {/* Spotlight Reveal Layer */}
@@ -506,7 +506,7 @@ export default function App() {
               <div 
                 ref={revealImgRef}
                 className="hero-reveal-img bg-contain lg:bg-cover bg-no-repeat hero-image-position bg-right lg:bg-center"
-                style={{ backgroundImage: "url('/character-reveal.jpg')" }}
+                style={{ backgroundImage: `url('${import.meta.env.BASE_URL}character-reveal.jpg')` }}
               />
             </motion.div>
           </motion.div>
