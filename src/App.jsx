@@ -110,13 +110,6 @@ export default function App() {
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const smooth = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -144,10 +137,17 @@ export default function App() {
       smooth.x += (mouse.x - smooth.x) * 0.1;
       smooth.y += (mouse.y - smooth.y) * 0.1;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       // Get container's offset relative to the viewport
       const rect = imgLayer.getBoundingClientRect();
+      
+      // Resize canvas dynamically if size changes
+      if (canvas.width !== rect.width || canvas.height !== rect.height) {
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       const localX = smooth.x - rect.left;
       const localY = smooth.y - rect.top;
 
@@ -178,12 +178,11 @@ export default function App() {
     loop();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [currentPath]);
 
   // Smooth scroll handler
   const scrollToSection = (id) => {
@@ -255,19 +254,18 @@ export default function App() {
             </button>
           </div>
         </div>
-
         {/* Desktop Links (Center) */}
         {(currentPath === '/projects/jewelmark' || currentPath === '/creative-works') ? (
-          <div className="hidden md:flex flex-row items-center gap-1 text-sm tracking-wide font-medium bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
+          <div className="hidden md:flex flex-row items-center gap-1 text-[16px] tracking-wide font-semibold bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
             <button 
               onClick={() => navigateTo('/', 'projects')} 
-              className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer flex items-center gap-2 font-sans"
+              className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer flex items-center gap-2"
             >
               ← Back to Projects
             </button>
           </div>
         ) : (
-          <nav className="hidden md:flex flex-row items-center gap-1 text-sm tracking-wide font-medium bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
+          <nav className="hidden md:flex flex-row items-center gap-1 text-[16px] tracking-wide font-semibold bg-white/70 backdrop-blur-md px-6 py-3.5 rounded-full border border-neutral-300/30 shadow-sm pointer-events-auto select-none">
             <button onClick={() => scrollToSection('about')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">About</button>
             <span className="text-neutral-300">|</span>
             <button onClick={() => scrollToSection('experience')} className="hover:text-[#66C7F4] transition-colors px-3 py-1 cursor-pointer">Experience</button>
@@ -385,7 +383,7 @@ export default function App() {
                           }
                         }}
                         whileHover={{ x: 8, color: '#57B9FF' }}
-                        className="text-left font-sans font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-full block text-[20px] leading-[1.4]"
+                        className="text-left font-semibold text-white tracking-wide cursor-pointer transition-colors duration-300 w-full block text-[18px] leading-[1.4]"
                         style={{ background: 'none', border: 'none' }}
                       >
                         {item.name}
@@ -536,7 +534,7 @@ export default function App() {
             </motion.p>
 
             {/* Headline Line-by-Line Reveal */}
-            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none font-serif max-w-[60%] sm:max-w-[65%] md:max-w-none mt-0 text-left mx-0">
+            <h1 className="responsive-hero-heading font-bold text-neutral-900 select-none max-w-[60%] sm:max-w-[65%] md:max-w-none mt-0 text-left mx-0">
               {[
                 "Helping Brands",
                 "Stand Out.",
@@ -608,12 +606,9 @@ export default function App() {
                 y: parallaxOffset.y * 12,
               }}
               transition={{ type: "spring", damping: 30, stiffness: 80 }}
-              className="w-full h-full max-h-[85vh] flex items-end justify-end relative overflow-visible"
+              className="w-full h-[650px] lg:h-[850px] xl:h-[920px] relative overflow-visible"
             >
-              <motion.img
-                src={`${import.meta.env.BASE_URL}Fav icon.png`}
-                alt="3D Character"
-                className="w-full h-[550px] lg:h-[700px] xl:h-[750px] object-contain object-bottom-right select-none"
+              <motion.div
                 animate={{
                   y: [0, -10, 0]
                 }}
@@ -622,7 +617,29 @@ export default function App() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-              />
+                className="w-full h-full relative overflow-visible"
+              >
+                {/* Base Image */}
+                <img 
+                  src={`${import.meta.env.BASE_URL}character-base.jpg`} 
+                  alt="3D Character Base" 
+                  className="absolute bottom-0 right-[-120px] lg:right-[-200px] xl:right-[-260px] w-auto h-full max-w-none object-contain object-bottom-right select-none"
+                />
+
+                {/* Hidden mask generator canvas */}
+                <canvas 
+                  ref={canvasRef} 
+                  style={{ display: 'none' }}
+                />
+
+                {/* Spotlight Reveal Layer */}
+                <img 
+                  ref={revealImgRef}
+                  src={`${import.meta.env.BASE_URL}character-reveal.jpg`} 
+                  alt="3D Character Reveal" 
+                  className="absolute bottom-0 right-[-120px] lg:right-[-200px] xl:right-[-260px] w-auto h-full max-w-none object-contain object-bottom-right select-none z-10"
+                />
+              </motion.div>
             </motion.div>
           </div>
 
@@ -638,9 +655,13 @@ export default function App() {
               className="relative overflow-visible"
             >
               <motion.img
-                src={`${import.meta.env.BASE_URL}Fav icon.png`}
+                src={`${import.meta.env.BASE_URL}character-reveal.jpg`}
                 alt="Character Mascot"
-                className="w-full h-auto object-contain select-none"
+                className="absolute right-[-100px] bottom-0 w-auto max-w-none select-none"
+                style={{
+                  height: 'clamp(250px, 34vh, 330px)',
+                  width: 'auto'
+                }}
                 animate={{
                   y: [0, -10, 0]
                 }}
@@ -692,14 +713,14 @@ export default function App() {
           {/* Left Column (40% width on desktop) */}
           <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">ABOUT ME</span>
-            <h2 className="text-[40px] md:text-[56px] lg:text-[70px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-0 md:mb-6">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1] max-w-[420px] mt-2 mb-0 md:mb-6">
               Designing Brands<br/>That People<br/>Remember.
             </h2>
           </div>
 
           {/* Right Column (60% width on desktop) */}
           <div className="col-span-1 md:col-span-7 flex flex-col pt-0 md:pt-[32px] text-neutral-600 font-normal">
-            <p className="max-w-[90%] md:max-w-[650px] text-[16px] md:text-[18px] lg:text-[22px] leading-[1.7] md:leading-[1.75] text-[#5F5F5F] md:text-neutral-900/72 font-sans font-normal mb-0 md:mb-5">
+            <p className="max-w-[90%] md:max-w-[650px] text-[16px] md:text-[17px] lg:text-[18px] leading-[1.7] text-[#5F5F5F] md:text-neutral-900/72 font-normal mb-0 md:mb-5">
               I'm Santhoshkumar Kanagaraj, a Graphic Designer and UX/UI Designer dedicated to creating memorable brand identities, modern websites, and impactful digital experiences. By combining strategic thinking, creativity, and AI-powered workflows, I help businesses build stronger brands, connect with their audience, and stand out in competitive markets.
             </p>
             
@@ -707,8 +728,8 @@ export default function App() {
             <div className="flex flex-col gap-3 mt-[28px] md:mt-7">
               <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] font-sans">WHAT I SPECIALIZE IN</span>
               <div 
-                className="flex flex-wrap items-center text-left font-sans select-none mt-1"
-                style={{ fontSize: '15px', fontWeight: 600, color: 'rgba(17, 17, 17, 0.75)', lineHeight: 1.8 }}
+                className="flex flex-wrap items-center text-left select-none mt-1"
+                style={{ fontSize: '16px', fontWeight: 600, color: 'rgba(17, 17, 17, 0.75)', lineHeight: 1.8 }}
               >
                 {['Brand Identity', 'Website Design', 'Marketing Creative', 'AI Video Production'].map((service, index, arr) => (
                   <div key={service} className="flex items-center whitespace-nowrap">
@@ -732,10 +753,10 @@ export default function App() {
             { value: "10", label: "Businesses Supported", suffix: "+" }
           ].map((stat, idx) => (
             <div key={idx} className="bg-white/65 backdrop-blur-sm border border-neutral-300/30 rounded-[24px] p-5 md:p-8 h-[140px] flex flex-col justify-start md:justify-between items-start text-left shadow-sm hover:shadow-md transition-shadow w-full">
-              <div className="text-[48px] md:text-[64px] font-bold text-neutral-900 leading-none tracking-tighter md:tracking-tight font-sans mb-3 md:mb-0">
+              <div className="text-[34px] md:text-[42px] lg:text-[52px] font-bold text-neutral-900 leading-none tracking-tight mb-3 md:mb-0">
                 <CountUp end={stat.value} />{stat.suffix}
               </div>
-              <div className="text-[16px] md:text-base font-medium text-neutral-900/65 md:text-neutral-900/60 leading-[1.3] md:leading-none font-sans max-w-[200px] line-clamp-2 md:line-clamp-none">
+              <div className="text-[14px] md:text-[16px] font-medium text-neutral-900/65 md:text-neutral-900/60 leading-[1.3] md:leading-none max-w-[200px] line-clamp-2 md:line-clamp-none">
                 {stat.label}
               </div>
             </div>
@@ -756,10 +777,10 @@ export default function App() {
           {/* Left Column */}
           <div className="col-span-1 md:col-span-5 flex flex-col items-start pt-1">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERIENCE</span>
-            <h2 className="text-[40px] md:text-[56px] lg:text-[80px] font-bold tracking-tight text-neutral-900 leading-[1.0] font-serif mt-2 mb-[20px] md:mb-6">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1] mt-2 mb-[20px] md:mb-6">
               Professional<br/>Experience
             </h2>
-            <p className="max-w-[90%] md:max-w-[620px] lg:max-w-[360px] text-[16px] md:text-[18px] lg:text-base text-[#5F5F5F] md:text-neutral-500 leading-[1.7] md:leading-[1.75] font-sans font-normal mb-[28px] md:mb-8">
+            <p className="max-w-[90%] md:max-w-[620px] lg:max-w-[360px] text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] md:text-neutral-500 leading-[1.7] font-normal mb-[28px] md:mb-8">
               Over the past 1.5 years, I've collaborated with businesses to create branding, websites, AI-powered content, and digital experiences that deliver measurable value.
             </p>
             
@@ -820,8 +841,8 @@ export default function App() {
                   <exp.icon size={22} strokeWidth={2} />
                 </div>
                 <div className="flex flex-col gap-3">
-                  <h3 className="text-[28px] md:text-[32px] font-bold text-neutral-900 leading-tight font-sans">{exp.title}</h3>
-                  <p className="text-[17px] md:text-[17px] text-[#5F5F5F] md:text-neutral-500 leading-[1.7] font-normal font-sans">{exp.desc}</p>
+                  <h3 className="text-[22px] md:text-[24px] lg:text-[28px] font-semibold text-neutral-900 leading-tight">{exp.title}</h3>
+                  <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#666] leading-[1.8] font-normal">{exp.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -840,10 +861,10 @@ export default function App() {
       >
         <div className="flex flex-col items-start mb-0 md:mb-6">
           <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">FEATURED PROJECTS</span>
-          <h2 className="text-[40px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 font-serif leading-[1.05] mt-2 mb-0 md:mb-6">
+          <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1] mt-2 mb-0 md:mb-6">
             Featured<br/>Projects
           </h2>
-          <p className="max-w-[90%] md:max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[18px] lg:text-[20px] text-[#5F5F5F] md:text-neutral-900/70 leading-[1.7] md:leading-[1.75] font-sans font-light mt-[20px] mb-0 md:mt-6 md:mb-0">
+          <p className="max-w-[90%] md:max-w-[620px] lg:max-w-[580px] text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] md:text-neutral-900/70 leading-[1.7] font-normal mt-[20px] mb-0 md:mt-6 md:mb-0">
             Every project represents a unique challenge, combining strategy, creativity, and user-centered design to build digital experiences that matter.
           </p>
         </div>
@@ -902,32 +923,32 @@ export default function App() {
                 <div className="absolute inset-0 bg-neutral-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
               </div>
 
-              {/* Project details (32px padding on bottom and sides, flexbox justify-between) */}
-              <div className="flex flex-col justify-between flex-1 px-6 pb-6 pt-0 md:px-[32px] md:pb-[32px]">
+              {/* Project details (Consistent responsive paddings, flexbox justify-between) */}
+              <div className="flex flex-col justify-between flex-1 px-7 pb-7 pt-0 md:px-9 md:pb-9 lg:px-12 lg:pb-12">
                 <div className="flex flex-col">
                   {/* Category Label */}
-                  <span className="text-[13px] uppercase tracking-[0.12em] font-bold text-[#66C7F4] font-sans block leading-none mt-[28px]">
+                  <span className="text-[14px] uppercase tracking-[0.12em] font-semibold text-[#66C7F4] block leading-none mt-7 md:mt-9 lg:mt-12">
                     {project.category}
                   </span>
 
                   {/* Project Title */}
-                  <h3 className="font-bold text-neutral-900 font-sans text-[28px] md:text-[32px] lg:text-[48px] leading-none h-auto md:h-[64px] lg:h-[96px] overflow-hidden mt-[12px] line-clamp-2">
+                  <h3 className="font-bold text-neutral-900 text-[28px] md:text-[34px] lg:text-[40px] leading-[1.05] tracking-[-0.03em] h-[58px] md:h-[72px] lg:h-[84px] overflow-hidden mt-6 line-clamp-2">
                     {project.title}
                   </h3>
 
                   {/* Project Description */}
-                  <h4 className="font-sans font-normal text-[17px] text-neutral-900/70 leading-[1.7] h-auto md:h-[110px] lg:h-[116px] overflow-hidden mt-[20px] line-clamp-4">
+                  <p className="font-normal text-[16px] md:text-[17px] xl:text-[18px] text-[#666666] leading-[1.8] h-[115px] md:h-[122px] xl:h-[130px] overflow-hidden mt-6 line-clamp-4">
                     {project.desc}
-                  </h4>
+                  </p>
                 </div>
 
                 <div className="flex flex-col">
                   {/* Tags capsules */}
-                  <div className="flex flex-wrap gap-[12px] h-auto md:h-[88px] overflow-hidden mt-[32px]">
+                  <div className="flex flex-wrap gap-2.5 h-[40px] overflow-hidden mt-6">
                     {project.tags.map((tag) => (
                       <span 
                         key={tag}
-                        className="h-[38px] px-[18px] inline-flex items-center justify-center rounded-full text-[15px] font-semibold md:text-[14px] md:font-medium bg-white text-neutral-800 border border-neutral-300/40 font-sans"
+                        className="h-[40px] px-[18px] inline-flex items-center justify-center rounded-full text-[14px] lg:text-[15px] font-medium bg-white text-neutral-800 border border-neutral-300/40 select-none whitespace-nowrap"
                       >
                         {tag}
                       </span>
@@ -935,9 +956,9 @@ export default function App() {
                   </div>
 
                   {/* Call to Action */}
-                  <div className="font-semibold font-sans flex items-center gap-1.5 cursor-pointer text-[#111111] group-hover:text-[#66C7F4] transition-colors duration-300 mt-[28px] text-[16px]">
+                  <div className="font-semibold flex items-center gap-2 cursor-pointer text-[#111111] group-hover:text-[#66C7F4] transition-colors duration-300 mt-6 text-[16px] md:text-[17px] lg:text-[18px]">
                     <span>{project.cta || "View Case Study"}</span>
-                    <ArrowRight size={16} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight size={18} strokeWidth={2.5} className="group-hover:translate-x-1.5 transition-transform duration-300" />
                   </div>
                 </div>
               </div>
@@ -975,13 +996,13 @@ export default function App() {
           {/* Left Column (35% width on desktop) */}
           <div className="col-span-1 md:col-span-4 flex flex-col items-start pt-1">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">EXPERTISE</span>
-            <h2 className="text-[40px] md:text-[56px] lg:text-[84px] font-bold tracking-[-0.03em] text-neutral-900 leading-[0.9] font-serif max-w-[420px] mt-2 mb-0 md:mb-6">
-              More Than<br/>Just Software.
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1] max-w-[420px] mt-2 mb-0 md:mb-6">
+              Beyond<br/>Design<br/>Tools.
             </h2>
             
             {/* Small description */}
-            <p className="max-w-[90%] md:max-w-[420px] text-[16px] md:text-[18px] lg:text-base text-[#5F5F5F] md:text-neutral-500 leading-[1.7] md:leading-[1.75] font-sans font-normal mt-[20px] md:mt-[22px] lg:mt-[28px]">
-              Design is more than knowing software. I combine creative thinking, business understanding, and visual communication to transform ideas into meaningful brand experiences. The tools help me create—but strategy, storytelling, and user understanding are what make the work effective.
+            <p className="max-w-[90%] md:max-w-[500px] text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] md:text-neutral-500 leading-[1.7] font-normal mt-[28px] md:mt-[36px] lg:mt-[42px]">
+              Great design isn't about the software—it's about solving business problems. I combine strategy, branding, customer psychology, and visual communication to create designs that help businesses build trust, attract customers, and grow. The tools are simply how I bring those ideas to life.
             </p>
           </div>
 
@@ -1000,32 +1021,32 @@ export default function App() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-y-[20px] md:gap-y-12 gap-x-8 md:gap-x-12 relative z-10 mt-[28px] lg:mt-0"
+                className="grid grid-cols-1 md:grid-cols-2 gap-y-[24px] md:gap-y-8 gap-x-4 md:gap-x-6 relative z-10 mt-[28px] lg:mt-0"
               >
                 {[
                   {
                     title: "Brand Strategy",
                     progress: 95,
-                    desc: "Aligning visuals with business objectives.",
-                    icon: <Palette size={32} strokeWidth={1.5} className="text-[#57B9FF]" />
+                    desc: "Building brands with clear positioning and purpose.",
+                    icon: <Palette size={24} strokeWidth={1.5} className="text-[#57B9FF]" />
                   },
                   {
-                    title: "User Psychology",
+                    title: "Customer Insight",
                     progress: 90,
-                    desc: "Designing experiences people love to use.",
-                    icon: <Layers size={32} strokeWidth={1.5} className="text-[#57B9FF]" />
+                    desc: "Designing around customer needs and behavior.",
+                    icon: <Layers size={24} strokeWidth={1.5} className="text-[#57B9FF]" />
                   },
                   {
-                    title: "Visual Stories",
+                    title: "Visual Communication",
                     progress: 92,
-                    desc: "Communicating value through visual narratives.",
-                    icon: <Sparkles size={32} strokeWidth={1.5} className="text-[#57B9FF]" />
+                    desc: "Turning complex ideas into clear visual messages.",
+                    icon: <Sparkles size={24} strokeWidth={1.5} className="text-[#57B9FF]" />
                   },
                   {
-                    title: "Digital Execution",
+                    title: "Creative Execution",
                     progress: 88,
-                    desc: "Transforming strategy into high-performing products.",
-                    icon: <Monitor size={32} strokeWidth={1.5} className="text-[#57B9FF]" />
+                    desc: "Delivering polished, consistent, and impactful design.",
+                    icon: <Monitor size={24} strokeWidth={1.5} className="text-[#57B9FF]" />
                   }
                 ].map((category, idx) => (
                   <motion.div 
@@ -1070,24 +1091,24 @@ export default function App() {
                       </svg>
     
                       {/* Centered Content */}
-                      <div className="flex flex-col items-center justify-center text-center z-10 pt-1">
+                      <div className="flex flex-col items-center justify-center text-center z-10 p-3">
                         {/* Icon Container with slight rotation on hover */}
-                        <div className="group-hover/circle:rotate-6 transition-transform duration-500 ease-out h-[36px] flex items-center justify-center">
+                        <div className="group-hover/circle:rotate-6 transition-transform duration-500 ease-out h-[24px] mb-3 flex items-center justify-center text-[#57B9FF]">
                           {category.icon}
                         </div>
                         {/* Category Title */}
-                        <span className="text-neutral-800 tracking-wider uppercase mt-2 md:mt-3 font-sans text-[12px] md:text-[14px] font-semibold">
+                        <span className="text-[#222] tracking-[0.05em] uppercase text-center max-w-[120px] md:max-w-[135px] leading-tight text-[14px] md:text-[15px] lg:text-[16px] font-semibold block overflow-hidden line-clamp-2">
                           {category.title}
                         </span>
                         {/* Percentage */}
-                        <span className="text-neutral-900 font-bold mt-0.5 md:mt-1 font-sans text-[24px] md:text-[30px] leading-[1.1]">
+                        <span className="text-[#111] font-bold mt-2.5 leading-none text-[22px] md:text-[24px] lg:text-[26px] block">
                           {category.progress}%
                         </span>
                       </div>
                     </motion.div>
     
                     {/* One short capability statement below each circle */}
-                    <p className="font-sans font-normal text-center mt-4 md:mt-[24px] max-w-[200px] text-[17px] md:text-[16px] text-[#5F5F5F] md:text-neutral-900/65 leading-[1.7] md:leading-[1.4]">
+                    <p className="font-normal text-center mt-4 md:mt-5 max-w-[260px] text-[16px] md:text-[17px] lg:text-[18px] text-[#666] leading-[1.6]">
                       {category.desc}
                     </p>
                   </motion.div>
@@ -1110,10 +1131,10 @@ export default function App() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-[28px] lg:gap-16 items-center">
           <div className="col-span-1 lg:col-span-7 flex flex-col gap-4 items-start">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">GET IN TOUCH</span>
-            <h2 className="text-[40px] md:text-[56px] lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.05] font-serif mt-2 mb-[20px] md:mb-6">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1] mt-2 mb-[20px] md:mb-6">
               Let's Build<br/>Something<br/>Amazing.
             </h2>
-            <p className="max-w-[90%] md:max-w-[620px] lg:max-w-lg text-[16px] md:text-[18px] lg:text-lg text-[#5F5F5F] md:text-neutral-500 leading-[1.7] md:leading-[1.75] font-sans font-light mb-0 md:mb-5 lg:mb-0">
+            <p className="max-w-[90%] md:max-w-[620px] lg:max-w-lg text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] md:text-neutral-500 leading-[1.7] mb-0 md:mb-5 lg:mb-0">
               I'm always open to discussing creative projects, freelance opportunities, branding, website design, and innovative digital experiences.
             </p>
             
@@ -1130,11 +1151,9 @@ export default function App() {
                 <Mail size={18} strokeWidth={2.2} className="text-[#5AB8FF] group-hover:text-white transition-colors duration-300" />
               </motion.a>
             </div>
-          </div>
-
-          {/* Contact Information Details */}
+              {/* Contact Information Details */}
           <div className="col-span-1 lg:col-span-5 bg-white border border-neutral-300/30 p-6 md:p-10 rounded-3xl shadow-sm flex flex-col gap-[28px] w-full">
-            <h3 className="text-[28px] md:text-2xl font-bold text-neutral-900 font-sans">Contact Details</h3>
+            <h3 className="text-[22px] md:text-[24px] lg:text-[28px] font-semibold text-neutral-900">Contact Details</h3>
             
             <div className="flex flex-col gap-[28px] text-sm">
               {/* Email */}
@@ -1149,8 +1168,8 @@ export default function App() {
                   <Mail size={22} strokeWidth={1.8} />
                 </motion.a>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-3xs uppercase tracking-wider font-semibold text-neutral-400 font-sans">Email</span>
-                  <a href="mailto:santhosh.designns@gmail.com" className="text-neutral-700 hover:text-[#5AB8FF] font-medium transition-colors font-sans">santhosh.designns@gmail.com</a>
+                  <span className="text-[15px] uppercase tracking-wider font-semibold text-neutral-400">Email</span>
+                  <a href="mailto:santhosh.designns@gmail.com" className="text-[18px] text-neutral-700 hover:text-[#5AB8FF] font-medium transition-colors">santhosh.designns@gmail.com</a>
                 </div>
               </div>
 
@@ -1166,8 +1185,8 @@ export default function App() {
                   <Phone size={22} strokeWidth={1.8} />
                 </motion.a>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-3xs uppercase tracking-wider font-semibold text-neutral-400 font-sans">Phone</span>
-                  <a href="tel:+918508455669" className="text-neutral-700 hover:text-[#5AB8FF] font-medium transition-colors font-sans">+91 8508455669</a>
+                  <span className="text-[15px] uppercase tracking-wider font-semibold text-neutral-400">Phone</span>
+                  <a href="tel:+918508455669" className="text-[18px] text-neutral-700 hover:text-[#5AB8FF] font-medium transition-colors">+91 8508455669</a>
                 </div>
               </div>
 
@@ -1182,8 +1201,8 @@ export default function App() {
                   <MapPin size={22} strokeWidth={1.8} />
                 </motion.div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-3xs uppercase tracking-wider font-semibold text-neutral-400 font-sans">Location</span>
-                  <span className="text-neutral-700 font-sans">Pollachi, Tamil Nadu, India</span>
+                  <span className="text-[15px] uppercase tracking-wider font-semibold text-neutral-400">Location</span>
+                  <span className="text-[18px] text-neutral-700 font-medium">Pollachi, Tamil Nadu, India</span>
                 </div>
               </div>
 
@@ -1196,33 +1215,32 @@ export default function App() {
                   whileHover={{ y: -2, backgroundColor: "#5AB8FF" }}
                   initial={{ y: 0, backgroundColor: "#F5F7FA" }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="w-[40px] h-[40px] rounded-full border border-[rgba(0,0,0,0.05)] flex items-center justify-center text-[#5AB8FF] hover:text-white shrink-0 cursor-pointer"
+                  className="w-[40px] h-[40px] rounded-full border border-[rgba(0,0,0,0.05)] flex items-center justify-center text-[#5AB8FF] hover:text-white shrink-0 shrink-0 cursor-pointer"
                 >
                   <Linkedin size={22} strokeWidth={1.8} />
                 </motion.a>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-3xs uppercase tracking-wider font-semibold text-neutral-400 font-sans">LinkedIn</span>
+                  <span className="text-[15px] uppercase tracking-wider font-semibold text-neutral-400">LinkedIn</span>
                   <a 
                     href="https://www.linkedin.com/in/santhoshkumar-kanagaraj-920763265" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Open Santhoshkumar Kanagaraj's LinkedIn profile"
-                    className="text-[#111] hover:text-[#5AB8FF] font-semibold transition-colors duration-300 inline-flex items-center gap-1 group/link cursor-pointer relative"
+                    className="text-[#111] hover:text-[#5AB8FF] font-semibold transition-colors duration-300 inline-flex items-center gap-1 group/link cursor-pointer relative text-[18px]"
                   >
                     <span>View My LinkedIn</span>
-                    <ArrowRight size={14} className="group-hover/link:translate-x-[6px] transition-transform duration-300 text-[#111] group-hover/link:text-[#5AB8FF] transition-colors" />
+                    <ArrowRight size={18} className="group-hover/link:translate-x-[6px] transition-transform duration-300 text-[#111] group-hover/link:text-[#5AB8FF] transition-colors" />
                   </a>
                 </div>
               </div>
 
-
             </div>
-          </div>
+          </div>        </div>
         </div>
       </motion.section>
 
       {/* FOOTER */}
-      <footer className="relative w-full px-5 md:px-10 lg:px-16 py-10 max-w-[1400px] mx-auto z-30 border-t border-neutral-200/30 flex flex-col md:flex-row justify-between items-center gap-5 md:gap-6 text-[15px] md:text-xs font-medium text-neutral-400 select-none text-center">
+      <footer className="relative w-full px-5 md:px-10 lg:px-16 py-10 max-w-[1400px] mx-auto z-30 border-t border-neutral-200/30 flex flex-col md:flex-row justify-between items-center gap-5 md:gap-6 text-[15px] font-medium text-neutral-400 select-none text-center">
         <span>Designed & Developed by Santhoshkumar Kanagaraj</span>
         
         {/* Social Links in Footer */}
@@ -1235,7 +1253,7 @@ export default function App() {
             aria-label="Open Santhoshkumar Kanagaraj's LinkedIn profile"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] font-medium text-neutral-400"
           >
             <Linkedin size={16} />
             <span>LinkedIn</span>
@@ -1248,7 +1266,7 @@ export default function App() {
             href="mailto:santhosh.designns@gmail.com" 
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] font-medium text-neutral-400"
           >
             <Mail size={16} />
             <span>Email</span>
@@ -1260,7 +1278,7 @@ export default function App() {
             download="Santhoshkumar-Kanagaraj-Resume.pdf"
             whileHover={{ y: -3, color: '#57B9FF' }}
             transition={{ duration: 0.25 }}
-            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] md:text-xs font-medium text-neutral-400"
+            className="flex items-center gap-1.5 transition-colors cursor-pointer text-[15px] font-medium text-neutral-400"
             style={{ textDecoration: 'none' }}
           >
             <Download size={16} />

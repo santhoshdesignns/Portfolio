@@ -38,10 +38,10 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">
               BRAND IDENTITY
             </span>
-            <h1 className="text-[48px] md:text-[68px] lg:text-[84px] font-bold tracking-tight text-neutral-900 leading-[1.05] font-serif mb-6">
+            <h1 className="text-[42px] md:text-[52px] lg:text-[64px] font-bold tracking-tight text-neutral-900 leading-[1.05] mb-6">
               JewelMark Branding
             </h1>
-            <p className="text-[18px] md:text-[20px] text-[#5F5F5F] leading-[1.65] font-sans font-normal mb-8 max-w-2xl">
+            <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.65] font-normal mb-8 max-w-2xl">
               A jewellery brand identity developed to create a distinctive, memorable, and consistent presence across digital and physical touchpoints.
             </p>
 
@@ -90,11 +90,11 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">
               PROJECT OVERVIEW
             </span>
-            <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-neutral-900 leading-[1.1] font-serif">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1]">
               The Context.
             </h2>
           </div>
-          <div className="col-span-1 md:col-span-8 flex flex-col gap-6 text-[16px] md:text-[17px] text-[#5F5F5F] leading-[1.6] font-sans font-light">
+          <div className="col-span-1 md:col-span-8 flex flex-col gap-6 text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.7] font-normal">
             <p>
               **The Brand:** JewelMark provides visual AI photography, virtual store experiences, and digital gold scheme campaigns specifically tailored for legacy jewelry manufacturers and retail stores.
             </p>
@@ -119,10 +119,10 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
         <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">
           LOGO EVOLUTION
         </span>
-        <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-bold tracking-tight text-neutral-900 leading-[1.1] font-serif mb-6">
+        <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1] mb-6">
           From First Sketch<br />to Final Mark.
         </h2>
-        <p className="text-[16px] md:text-[18px] text-[#5F5F5F] leading-[1.65] font-sans font-normal max-w-2xl mb-16">
+        <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.65] font-normal max-w-2xl mb-16">
           The JewelMark identity began as a hand-drawn idea, combining the initials “J” and “M” with a rising form to represent growth and progress. The concept was then simplified, refined, and developed into a cleaner visual identity for the final brand.
         </p>
 
@@ -191,7 +191,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
                 
                 {/* Details */}
                 <div className="pt-8 flex flex-col items-center bg-transparent z-10">
-                  <span className="text-[18px] lg:text-[20px] font-bold text-[#66C7F4] font-serif bg-[#F5F5F5] px-4">
+                  <span className="text-[18px] lg:text-[20px] font-bold text-[#66C7F4] bg-[#F5F5F5] px-4">
                     {stage.num}
                   </span>
                   <span className="text-[11px] lg:text-[12px] font-bold tracking-widest uppercase text-neutral-800 font-sans mt-2 bg-[#F5F5F5] px-2">
@@ -220,7 +220,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">
               MY CONTRIBUTION
             </span>
-            <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-neutral-900 leading-[1.1] font-serif">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold tracking-tight text-neutral-900 leading-[1.1]">
               Areas of Focus.
             </h2>
           </div>
@@ -255,7 +255,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#66C7F4] mb-4 font-sans">
             EXPLORE JEWELMARK
           </span>
-          <h2 className="text-[36px] md:text-[56px] font-serif font-light mb-8 text-white">
+          <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-semibold mb-8 text-white">
             Ready to build your legacy?
           </h2>
           <a 
@@ -274,7 +274,7 @@ export default function JewelMarkCaseStudy({ navigateTo }) {
           className="w-full border-t border-white/10 flex flex-col items-center justify-center text-center py-16 hover:bg-white/5 transition-colors duration-300 cursor-pointer group"
         >
           <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-sans font-bold mb-2">NEXT PROJECT</span>
-          <h3 className="text-2xl md:text-3xl font-serif font-light text-white tracking-wide group-hover:translate-x-1.5 transition-transform duration-300 inline-flex items-center gap-2">
+          <h3 className="text-[22px] md:text-[24px] lg:text-[28px] font-semibold text-white tracking-wide group-hover:translate-x-1.5 transition-transform duration-300 inline-flex items-center gap-2">
             Company Website Design <ArrowRight className="text-[#66C7F4]" size={20} />
           </h3>
         </button>

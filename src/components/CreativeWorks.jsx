@@ -84,13 +84,13 @@ export default function CreativeWorks({ navigateTo }) {
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">
               CREATIVE DESIGN
             </span>
-            <h1 className="text-[40px] md:text-[56px] lg:text-[76px] font-bold tracking-tight text-neutral-900 leading-[1.1] font-serif mb-6">
+            <h1 className="text-[42px] md:text-[52px] lg:text-[64px] font-bold tracking-tight text-neutral-900 leading-[1.05] mb-6">
               Design That<br />
               Communicates.<br />
               Connects.<br />
               Gets Noticed.
             </h1>
-            <p className="text-[17px] md:text-[19px] text-[#5F5F5F] leading-[1.65] font-sans font-normal max-w-xl">
+            <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.65] font-normal max-w-xl">
               A collection of visual work created to turn ideas, messages, and marketing goals into clear and engaging design across digital and print.
             </p>
           </div>
@@ -119,12 +119,12 @@ export default function CreativeWorks({ navigateTo }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 mb-12">
           <div className="md:col-span-4">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">SECTION 01</span>
-            <h2 className="text-[28px] md:text-[36px] font-bold text-neutral-900 font-serif leading-[1.2]">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold text-neutral-900 leading-[1.1]">
               Posters Built to Capture Attention.
             </h2>
           </div>
           <div className="md:col-span-8 flex flex-col justify-start">
-            <p className="text-[16px] md:text-[17px] text-[#5F5F5F] leading-[1.65] font-sans font-light">
+            <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.65] font-normal">
               Visual compositions designed to communicate key messages quickly while creating strong hierarchy, clarity, and audience impact.
             </p>
           </div>
@@ -154,7 +154,7 @@ export default function CreativeWorks({ navigateTo }) {
               </div>
               <div className="flex flex-col items-start px-2">
                 <span className="text-[11px] font-bold tracking-widest text-[#66C7F4] uppercase font-sans">{item.category}</span>
-                <h3 className="text-[18px] font-bold text-neutral-900 font-serif mt-1">{item.title}</h3>
+                <h3 className="text-[18px] font-bold text-neutral-900 mt-1">{item.title}</h3>
                 <p className="text-[14px] text-[#5F5F5F] font-sans leading-relaxed mt-2">{item.desc}</p>
               </div>
             </div>
@@ -173,12 +173,12 @@ export default function CreativeWorks({ navigateTo }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 mb-12">
           <div className="md:col-span-4">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">SECTION 02</span>
-            <h2 className="text-[28px] md:text-[36px] font-bold text-neutral-900 font-serif leading-[1.2]">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold text-neutral-900 leading-[1.1]">
               Campaign Visuals Made to Stand Out.
             </h2>
           </div>
           <div className="md:col-span-8 flex flex-col justify-start">
-            <p className="text-[16px] md:text-[17px] text-[#5F5F5F] leading-[1.65] font-sans font-light">
+            <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.65] font-normal">
               Digital and promotional banners designed to deliver focused messages across campaigns, social platforms, and marketing touchpoints.
             </p>
           </div>
@@ -208,7 +208,7 @@ export default function CreativeWorks({ navigateTo }) {
               </div>
               <div className="flex flex-col items-start px-2">
                 <span className="text-[11px] font-bold tracking-widest text-[#66C7F4] uppercase font-sans">{item.category}</span>
-                <h3 className="text-[18px] font-bold text-neutral-900 font-serif mt-1">{item.title}</h3>
+                <h3 className="text-[18px] font-bold text-neutral-900 mt-1">{item.title}</h3>
                 <p className="text-[14px] text-[#5F5F5F] font-sans leading-relaxed mt-2">{item.desc}</p>
               </div>
             </div>
@@ -227,12 +227,12 @@ export default function CreativeWorks({ navigateTo }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 mb-12">
           <div className="md:col-span-4">
             <span className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#66C7F4] mb-3 block font-sans">SECTION 03</span>
-            <h2 className="text-[28px] md:text-[36px] font-bold text-neutral-900 font-serif leading-[1.2]">
+            <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-bold text-neutral-900 leading-[1.1]">
               Information Made Clear and Visual.
             </h2>
           </div>
           <div className="md:col-span-8 flex flex-col justify-start">
-            <p className="text-[16px] md:text-[17px] text-[#5F5F5F] leading-[1.65] font-sans font-light">
+            <p className="text-[16px] md:text-[17px] lg:text-[18px] text-[#5F5F5F] leading-[1.65] font-normal">
               Print and digital flyers designed to organize information, guide attention, and communicate offers or services effectively.
             </p>
           </div>
@@ -262,7 +262,7 @@ export default function CreativeWorks({ navigateTo }) {
               </div>
               <div className="flex flex-col items-start px-2">
                 <span className="text-[11px] font-bold tracking-widest text-[#66C7F4] uppercase font-sans">{item.category}</span>
-                <h3 className="text-[18px] font-bold text-neutral-900 font-serif mt-1">{item.title}</h3>
+                <h3 className="text-[18px] font-bold text-neutral-900 mt-1">{item.title}</h3>
                 <p className="text-[14px] text-[#5F5F5F] font-sans leading-relaxed mt-2">{item.desc}</p>
               </div>
             </div>
@@ -283,7 +283,7 @@ export default function CreativeWorks({ navigateTo }) {
           className="w-full flex flex-col items-center justify-center text-center py-20 md:py-28 hover:bg-[#66C7F4]/10 transition-colors duration-500 cursor-pointer group"
         >
           <span className="text-xs uppercase tracking-[0.2em] text-[#66C7F4] font-sans font-bold mb-3">NEXT PROJECT</span>
-          <h2 className="text-[32px] md:text-[48px] lg:text-[64px] font-serif font-light text-white tracking-wide group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center gap-4">
+          <h2 className="text-[34px] md:text-[42px] lg:text-[52px] font-semibold text-white tracking-wide group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center gap-4">
             JewelMark Branding <ArrowRight className="text-[#66C7F4]" size={36} />
           </h2>
         </button>
